@@ -1,0 +1,64 @@
+{
+  "name": "wpa-ui",
+  "version": "1.0.1",
+  "description": "使用wpa开发的WebComponents库，样式采用bootstrap。可以作为标准的esmodule使用",
+  "main": "src/index.jsx",
+  "type": "module",
+  "localDev": {
+    "server": {
+      "port": 8991,
+      "root": "./dist"
+    }
+  },
+  "scripts": {
+    "dev": "node esbuild.js dev",
+    "build:all": "npm-run-all -s build:prod gen:icons build:icons build:bicons build:loadings build:css build:coder",
+    "build": "node esbuild.js prod",
+    "build:prod": "node esbuild.js prod",
+    "build:icons": "node ./src/icon/esbuild.js",
+    "build:bicons": "node ./src/bootstrap/icons/esbuild.js",
+    "build:loadings": "node ./src/loading/esbuild.js",
+    "build:css": "node ./src/bootstrap/esbuild.js",
+    "build:coder": "node ./src/coder/esbuild.js",
+    "gen:icons": "node ./src/icon/scripts/gen-icons.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.11",
+    "esbuild-sass-plugin": "^2.6.0",
+    "jquery": "^3.6.0",
+    "jsdom": "^20.0.0",
+    "local-dev-server": "^1.0.12",
+    "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.0.12",
+    "@material-design-icons/svg": "^0.11.9",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
+    "echarts": "^5.4.1",
+    "monaco-editor": "^0.34.1",
+    "preview-utils": "^1.0.1",
+    "sortablejs": "^1.15.0",
+    "tinymce": "^6.3.1",
+    "wpa": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lv-saharan/wpa-ui.git"
+  },
+  "keywords": [
+    "wpa",
+    "ui",
+    "bootstrap",
+    "component",
+    "esmodule",
+    "wpa-ui",
+    "micro frontend"
+  ],
+  "author": "lv-saharan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/lv-saharan/wpa-ui/issues"
+  },
+  "homepage": "https://github.com/lv-saharan/wpa-ui#readme"
+}

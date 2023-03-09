@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumb test</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="file" accept="image/*,video/*" id="selector" />
+        <hr>
+        <img style="height:200px;display:none" alt="demo img" id="preview">
+        <video style="height:200px;width:300px;display: none;" id="video" controls></video>
+        <hr>
+        width:<input id="imgWidth" type="number" value="100"> height:<input id="imgHeight" type="number" value="100">
+        <button id="thumb">Create Thumb</button>
+        <hr>
+        <img alt="thumb img" id="thumbImage">
+
+    </div>
+    <script type="module">
+        import { creatPreviewUrl, createThumb } from "../src/index.js"
+        document.querySelector("#selector").addEventListener("change", async (e) => {
+            const file = e.target.files[0]
+            let $preview = document.querySelector("#preview")
+            let $previewVideo = document.querySelector("#video")
+            if (file.type.startsWith("image/")) {
+                $preview.src = creatPreviewUrl(file)
+                $preview.style.display = "block"
+                $previewVideo.style.display = "none"
+            } else if (file.type.startsWith("video/")) {
+                $previewVideo.src = creatPreviewUrl(file)
+                $previewVideo.style.display = "block"
+                $preview.style.display = "none"
+            }
+
+        })
+
+        document.querySelector("#thumb").addEventListener("click", async (e) => {
+            const base64 = await createThumb(
+                document.querySelector("#selector").files[0],
+                Number.parseInt(document.querySelector("#imgWidth").value),
+                Number.parseInt(document.querySelector("#imgHeight").value),
+            )
+            document.querySelector("#thumbImage").src = base64
+        })
+    </script>
+</body>
+
+</html>

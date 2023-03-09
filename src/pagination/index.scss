@@ -1,0 +1,24 @@
+.info {
+    .page-link {
+        border-color: transparent;
+        .total{
+            color:var(--oi-gray-dark);
+        }
+    }
+}
+
+.jumper {
+    .page-link {
+        border-color: transparent;
+
+    }
+}
+.jump-to{
+    margin:0;
+    padding:0;
+    border: 0;
+    outline:var(--oi-gray-dark) solid 1px
+}
+.pagination{
+    margin: 0;
+}

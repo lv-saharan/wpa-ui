@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 test</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="file" accept="image/*" id="selector" />
+        <hr>
+        <img style="height: 200px;" alt="demo img" id="preview">
+        <hr>
+        <textarea style="width: 100%;height: 200px;" id="output"></textarea>
+        <hr>
+        <button id="parse">Parse Base64</button>
+        <textarea style="width: 100%;height: 200px;" id="output2"></textarea>
+        <hr>
+        <button id="toFile"> Base64 To File </button>
+
+    </div>
+    <script type="module">
+        import { parseBase64, fileToBase64, base64ToFile, creatPreviewUrl } from "../src/index.js"
+        document.querySelector("#selector").addEventListener("change", async (e) => {
+            const base64 = await fileToBase64(e.target.files[0])
+            document.querySelector("#output").value = base64
+            document.querySelector("#preview").src = base64
+        })
+        document.querySelector("#output").addEventListener("change", e => {
+            document.querySelector("#preview").src = e.target.value
+
+        })
+        document.querySelector("#parse").addEventListener("click", (e) => {
+            document.querySelector("#output2").value = JSON.stringify(parseBase64(document.querySelector("#output").value))
+        })
+        document.querySelector("#toFile").addEventListener("click", async (e) => {
+            const file = await base64ToFile(document.querySelector("#output").value, "file.png")
+            window.open(creatPreviewUrl(file))
+        })
+    </script>
+</body>
+
+</html>
