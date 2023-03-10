@@ -40,7 +40,7 @@
     "preview-utils": "^1.0.1",
     "sortablejs": "^1.15.0",
     "tinymce": "^6.3.1",
-    "wpa": "^1.0.1"
+    "wpa": "^1.0.2"
   },
   "repository": {
     "type": "git",
