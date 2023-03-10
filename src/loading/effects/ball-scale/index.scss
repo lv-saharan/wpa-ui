@@ -1,9 +1,9 @@
 .loading {
     display: inline-block;
-    width: var(--oi-loading-size);
-    height: var(--oi-loading-size);
+    width: var(--wp-loading-size);
+    height: var(--wp-loading-size);
     border-radius: 100%;
-    background-color: var(--oi-loading-color, #000);
+    background-color: var(--wp-loading-color, #000);
     animation: ball-scale infinite linear 0.75s;
 }
 

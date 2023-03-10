@@ -19,7 +19,7 @@ export default class extends uiBase {
   css() {
     let { divider } = this.$props;
     if (typeof divider == "string") {
-      return `:host{--oi-breadcrumb-divider:'${divider}'}`;
+      return `:host{--wp-breadcrumb-divider:'${divider}'}`;
     }
     if (typeof divider == "object") {
       return `.breadcrumb-item + .breadcrumb-item::before{display:none}`;

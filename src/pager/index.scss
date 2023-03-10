@@ -6,14 +6,14 @@
     margin: 0 auto;
 
     div {
-        padding: var(--oi-pager-page-padding, 0.375rem 0.75rem);
-        line-height: var(--oi-pager-page-line-height, 1.2);
+        padding: var(--wp-pager-page-padding, 0.375rem 0.75rem);
+        line-height: var(--wp-pager-page-line-height, 1.2);
         text-align: center;
         display: inline-block;
         border: 0;
         border-radius: 0.2rem;
-        background-color: var(--oi-pager-page-bgcolor, #fff);
-        color: var(--oi-pager-page-color, black);
+        background-color: var(--wp-pager-page-bgcolor, #fff);
+        color: var(--wp-pager-page-color, black);
         margin-right: .3rem;
         user-select: none;
         font-size: 1.25rem;
@@ -28,9 +28,9 @@
     .prev,
     .next {
         &.disable {
-            color: var(--oi-pager-disable-color, #ccc);
+            color: var(--wp-pager-disable-color, #ccc);
             cursor: not-allowed;
-            --oi-icon-color: var(--oi-pager-disable-color, #ccc);
+            --wp-icon-color: var(--wp-pager-disable-color, #ccc);
         }
         font-size:0;
 
@@ -39,10 +39,10 @@
     .info {
         width: auto;
         cursor: auto;
-        color: var(--oi-pager-info-color, #0d6efd);
-        background-color: var(--oi-pager-info-bgcolor, transparent);
+        color: var(--wp-pager-info-color, #0d6efd);
+        background-color: var(--wp-pager-info-bgcolor, transparent);
         .curr {
-            color: var(--oi-pager-info-curr-color, red);
+            color: var(--wp-pager-info-curr-color, red);
         }
     }
 
@@ -61,13 +61,13 @@
     }
 
     .active {
-        background-color: var(--oi-pager-page-active-bgcolor, #0d6efd);
-        color: var(--oi-pager-page-active-color, #fff);
+        background-color: var(--wp-pager-page-active-bgcolor, #0d6efd);
+        color: var(--wp-pager-page-active-color, #fff);
 
     }
 
     .page:hover {
-        background-color: var(--oi-pager-page-hover-bgcolor, #6f9ab8);
-        color: var(--oi-pager-page-hover-color, #fff);
+        background-color: var(--wp-pager-page-hover-bgcolor, #6f9ab8);
+        color: var(--wp-pager-page-hover-color, #fff);
     }
 }

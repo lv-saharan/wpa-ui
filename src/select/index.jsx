@@ -53,7 +53,7 @@ export default class extends uiBase {
       return (
         <li>
           {option.text}
-          <oi-bi
+          <wp-bi
             name="x"
             onClick={(evt) => {
               evt.preventDefault();
@@ -119,10 +119,10 @@ export default class extends uiBase {
     return valid;
   }
   showOptions() {
-    this.$("oi-dropdown").show();
+    this.$("wp-dropdown").show();
   }
   hideOptions() {
-    this.$("oi-dropdown").hide();
+    this.$("wp-dropdown").hide();
   }
   receiveProps(props, old) {
     if (props.values != old.values) {
@@ -252,7 +252,7 @@ export default class extends uiBase {
 
     options = options ?? [];
     return (
-      <oi-dropdown
+      <wp-dropdown
         placement="bottom-start"
         css={`
           :host slot:not([name]) {
@@ -313,7 +313,7 @@ export default class extends uiBase {
               }}
             />
           )}
-          <oi-icon
+          <wp-icon
             class="expander ms-auto"
             name="keyboard_arrow_down"
             onClick={(evt) => {
@@ -346,7 +346,7 @@ export default class extends uiBase {
             </li>
           ))}
         </ul>
-      </oi-dropdown>
+      </wp-dropdown>
     );
   }
 }

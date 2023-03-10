@@ -21,10 +21,10 @@ export default class extends uiBase {
     pageSize: 10, //每頁條數，和total配合
     linksCount: 10,
     showMore: true,
-    prev: <oi-icon name="keyboard_arrow_left" />,
-    next: <oi-icon name="keyboard_arrow_right" />,
-    first: <oi-icon name="first_page" />,
-    last: <oi-icon name="last_page" />,
+    prev: <wp-icon name="keyboard_arrow_left" />,
+    next: <wp-icon name="keyboard_arrow_right" />,
+    first: <wp-icon name="first_page" />,
+    last: <wp-icon name="last_page" />,
     createPrev(settings, pager) {
       let { pageNum, prev } = settings;
       return (

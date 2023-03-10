@@ -20,7 +20,7 @@ export default class extends uiBase {
     checkedKeys: [], //多選
     radioedKey: null, //單選
     nodes: [], //節點
-    expander: <oi-icon name="keyboard_arrow_right" class="expander" />,
+    expander: <wp-icon name="keyboard_arrow_right" class="expander" />,
   };
   static propTypes = {
     ignoreAttrs: Boolean,
@@ -195,7 +195,7 @@ export default class extends uiBase {
         })}
       >
         {this.nodes.map((n) => (
-          <oi-tree-node node={n} tree={this} cssss={cssss} />
+          <wp-tree-node node={n} tree={this} cssss={cssss} />
         ))}
       </div>
     );

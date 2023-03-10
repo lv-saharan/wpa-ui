@@ -86,10 +86,10 @@ export default class extends uiBase {
   static loadIcon = loadIcon;
   static css = `
     :host{
-      vertical-align:var(--oi-icon-valign,middle) ;
+      vertical-align:var(--wp-icon-valign,middle) ;
     }
     svg{
-      vertical-align:var(--oi-icon-valign,middle) ;
+      vertical-align:var(--wp-icon-valign,middle) ;
     }
   `;
 
@@ -120,9 +120,9 @@ export default class extends uiBase {
 
   css() {
     let { size, color } = this.$props;
-    let fill = color ? color : "var(--oi-icon-color)";
-    let width = size ? `${size}rem` : "var(--oi-icon-width, 1rem)";
-    let height = size ? `${size}rem` : "var(--oi-icon-height, 1rem);";
+    let fill = color ? color : "var(--wp-icon-color)";
+    let width = size ? `${size}rem` : "var(--wp-icon-width, 1rem)";
+    let height = size ? `${size}rem` : "var(--wp-icon-height, 1rem);";
     return `
       :host svg{
         fill: ${fill} ;

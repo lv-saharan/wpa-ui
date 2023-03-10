@@ -26,8 +26,8 @@ input[type='file'] {
 
 
         .file {
-            --oi-icon-width: 8rem;
-            --oi-icon-height: 8rem;
+            --wp-icon-width: 8rem;
+            --wp-icon-height: 8rem;
 
 
 
@@ -61,8 +61,8 @@ input[type='file'] {
         }
 
         .actions {
-            --oi-icon-width: 2rem;
-            --oi-icon-height: 2rem;
+            --wp-icon-width: 2rem;
+            --wp-icon-height: 2rem;
             position: absolute;
             width: 100%;
             height: 100%;
@@ -80,7 +80,7 @@ input[type='file'] {
                 z-index: 4;
                 width: 100%;
                 height: 100%;
-                background-color: var(--oi-secondary);
+                background-color: var(--wp-secondary);
                 opacity: .9;
             }
 

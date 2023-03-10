@@ -1,13 +1,13 @@
 :host {
-    --oi-loading-border: calc(5/30 * var(--oi-loading-size))
+    --wp-loading-border: calc(5/30 * var(--wp-loading-size))
 }
 
 .loading {
     display: inline-block;
     position: relative;
-    width: var(--oi-loading-size);
-    height: var(--oi-loading-size);
-    border: calc(2/30 * var(--oi-loading-size)) solid var(--oi-loading-color, #000);
+    width: var(--wp-loading-size);
+    height: var(--wp-loading-size);
+    border: calc(2/30 * var(--wp-loading-size)) solid var(--wp-loading-color, #000);
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-radius: 100%;
@@ -17,18 +17,18 @@
 .loading:before,
 .loading:after {
     position: absolute;
-    top: calc(0.8 * var(--oi-loading-size));
-    left: calc(-2/30 * var(--oi-loading-size));
-    border-top: var(--oi-loading-border) solid var(--oi-loading-color, #000);
-    border-right: var(--oi-loading-border)solid transparent;
-    border-left: var(--oi-loading-border)solid transparent;
+    top: calc(0.8 * var(--wp-loading-size));
+    left: calc(-2/30 * var(--wp-loading-size));
+    border-top: var(--wp-loading-border) solid var(--wp-loading-color, #000);
+    border-right: var(--wp-loading-border)solid transparent;
+    border-left: var(--wp-loading-border)solid transparent;
     content: "";
     transform: rotate(-30deg);
 }
 
 .loading:after {
     top: 0;
-    left: calc(20.5/30 * var(--oi-loading-size));
+    left: calc(20.5/30 * var(--wp-loading-size));
     transform: rotate(150deg);
 }
 

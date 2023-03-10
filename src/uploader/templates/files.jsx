@@ -20,17 +20,17 @@ export default ({ component }) => {
           {files.map((file) => (
             <tr>
               <td>
-                <oi-icon
+                <wp-icon
                   view-box="1024"
                   name={getFileType(file.ext)}
                   type="file-type"
-                ></oi-icon>
+                ></wp-icon>
                 {file.name}
                 {file.ext}
               </td>
               <td>{formatSize(file.size)}</td>
               <td>
-                <oi-icon name="delete" />
+                <wp-icon name="delete" />
               </td>
             </tr>
           ))}

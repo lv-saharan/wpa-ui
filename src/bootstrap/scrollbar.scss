@@ -1,7 +1,7 @@
 ::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.1rem;
-  background: var(--oi-scrollbar-bg, transparent);
+  background: var(--wp-scrollbar-bg, transparent);
   z-index: 0;
 }
 
@@ -13,7 +13,7 @@
 :hover::-webkit-scrollbar-thumb {
   z-index: 0;
   border-radius: 1rem;
-  background-color: var(--oi-scrollbar-hover-bg, skyblue);
+  background-color: var(--wp-scrollbar-hover-bg, skyblue);
   background-image: -webkit-linear-gradient(45deg,
       rgba(255, 255, 255, 0.2) 25%,
       transparent 25%,

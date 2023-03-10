@@ -293,7 +293,7 @@ class TreeNode extends uiBase {
         {this.expanded &&
           (children instanceof Array
             ? children.map((child) => (
-                <oi-tree-node
+                <wp-tree-node
                   node={child}
                   node-level={this.level + 1}
                   tree={this.tree}
@@ -314,7 +314,7 @@ class TreeNode extends uiBase {
       >
         <div
           class={classNames("element", { selected: this.selected })}
-          style={`padding-left:calc(${this.level} * var(--oi-tree-node-indent,1rem))`}
+          style={`padding-left:calc(${this.level} * var(--wp-tree-node-indent,1rem))`}
           onClick={(evt) => {
             // console.log(evt)
             evt.stopPropagation();
@@ -336,7 +336,7 @@ class TreeNode extends uiBase {
           {this.$checkbox}
           {this.$radio}
           <div class="label">{$element}</div>
-          {/* {this.#isloading ? <oi-loading /> : null} */}
+          {/* {this.#isloading ? <wp-loading /> : null} */}
         </div>
         {$children}
       </div>
@@ -344,5 +344,5 @@ class TreeNode extends uiBase {
   }
 }
 
-define("oi-tree-node", TreeNode);
+define("wp-tree-node", TreeNode);
 export default TreeNode;

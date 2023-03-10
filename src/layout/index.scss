@@ -9,7 +9,7 @@
     height: 100%;
     clear: both;
     overflow: hidden;
-    --oi-layout-duration: .36s;
+    --wp-layout-duration: .36s;
 
     slot {
         position: relative;
@@ -20,26 +20,26 @@
         border: 0;
 
         &[name=header] {
-            padding: val(--oi-layout-header-padding, 0);
+            padding: val(--wp-layout-header-padding, 0);
         }
 
         &[name=footer] {
-            padding: val(--oi-layout-footer-padding, 0);
+            padding: val(--wp-layout-footer-padding, 0);
         }
 
         &[name=content] {
             flex-grow: 1;
             z-index: 6;
-            padding: val(--oi-layout-content-padding, 0);
+            padding: val(--wp-layout-content-padding, 0);
         }
 
         &[name=left] {
-            padding: var(--oi-layout-left-padding, 0);
+            padding: var(--wp-layout-left-padding, 0);
 
         }
 
         &[name=right] {
-            padding: val(--oi-layout-right-padding, 0);
+            padding: val(--wp-layout-right-padding, 0);
         }
     }
 
@@ -49,7 +49,7 @@
     main {
         display: flex;
         flex: 1 0 auto;
-        transition: all var(--oi-layout-duration) ease;
+        transition: all var(--wp-layout-duration) ease;
     }
 
 
@@ -63,7 +63,7 @@
 
     .collapsing {
         height: 0;
-        transition: height var(--oi-layout-duration) ease
+        transition: height var(--wp-layout-duration) ease
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -75,7 +75,7 @@
     .collapsing.collapse-horizontal {
         width: 0;
         height: auto;
-        transition: width var(--oi-layout-duration) ease
+        transition: width var(--wp-layout-duration) ease
     }
 
     @media (prefers-reduced-motion: reduce) {

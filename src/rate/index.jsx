@@ -56,7 +56,7 @@ export default class extends uiBase {
         {stars.map((name, index) => {
           if (rateable) {
             return (
-              <oi-icon
+              <wp-icon
                 name={name}
                 size={size}
                 color={color}
@@ -83,7 +83,7 @@ export default class extends uiBase {
             );
           } else {
             return (
-              <oi-icon name={name} size={size} color={color} className={name} />
+              <wp-icon name={name} size={size} color={color} className={name} />
             );
           }
         })}

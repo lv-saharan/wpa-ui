@@ -6,7 +6,7 @@ export default class extends uiBase {
   static defaultProps = {
     src: null,
     module: "default",
-    loading: <oi-loading size="6" />,
+    loading: <wp-loading size="6" />,
     loadError: <h1>Module Load Error</h1>,
   };
   static propTypes = {

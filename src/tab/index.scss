@@ -12,41 +12,41 @@
     .navs {
         .nav {
             display: inline-block;
-            padding: var(--oi-tab-nav-padding, 0.3rem 1rem);
-            line-height: var(--oi-tab-nav-line-height, 1.2);
-            font: var(--oi-tab-nav-font, 1.2rem arial, sans-serif);
-            color: var(--oi-tab-nav-color);
+            padding: var(--wp-tab-nav-padding, 0.3rem 1rem);
+            line-height: var(--wp-tab-nav-line-height, 1.2);
+            font: var(--wp-tab-nav-font, 1.2rem arial, sans-serif);
+            color: var(--wp-tab-nav-color);
             margin-right: .2rem;
             cursor: pointer;
-            border-top: var(--oi-tab-nav-border-top, 1px solid transparent);
-            border-right: var(--oi-tab-nav-border-right, 1px solid transparent);
-            border-bottom: var(--oi-tab-nav-border-bottom, 1px solid transparent);
-            border-left: var(--oi-tab-nav-border-left, 1px solid transparent);
+            border-top: var(--wp-tab-nav-border-top, 1px solid transparent);
+            border-right: var(--wp-tab-nav-border-right, 1px solid transparent);
+            border-bottom: var(--wp-tab-nav-border-bottom, 1px solid transparent);
+            border-left: var(--wp-tab-nav-border-left, 1px solid transparent);
 
             &.active {
-                border-top: var(--oi-tab-nav-active-border-top, 1px solid transparent);
-                border-right: var(--oi-tab-nav-active-border-right, 1px solid transparent);
-                border-bottom: var(--oi-tab-nav-active-border-bottom, 1px solid #0d6efd);
-                border-left: var(--oi-tab-nav-active-border-left, 1px solid transparent);
-                font: var(--oi-tab-nav-active-font, bold 1.2rem arial, sans-serif);
-                color: var(--oi-tab-nav-active-color, var(--oi-primary));
+                border-top: var(--wp-tab-nav-active-border-top, 1px solid transparent);
+                border-right: var(--wp-tab-nav-active-border-right, 1px solid transparent);
+                border-bottom: var(--wp-tab-nav-active-border-bottom, 1px solid #0d6efd);
+                border-left: var(--wp-tab-nav-active-border-left, 1px solid transparent);
+                font: var(--wp-tab-nav-active-font, bold 1.2rem arial, sans-serif);
+                color: var(--wp-tab-nav-active-color, var(--wp-primary));
 
             }
 
             &:hover {
-                border-top: var(--oi-tab-nav-hover-border-top, 1px solid transparent);
-                border-right: var(--oi-tab-nav-hover-border-right, 1px solid transparent);
-                border-bottom: var(--oi-tab-nav-hover-border-bottom, 1px solid #0d6efd);
-                border-left: var(--oi-tab-nav-hover-border-left, 1px solid transparent);
-                font: var(--oi-tab-nav-hover-font, bold 1.2rem arial, sans-serif);
-                color: var(--oi-tab-nav-hover-color, var(--oi-primary));
+                border-top: var(--wp-tab-nav-hover-border-top, 1px solid transparent);
+                border-right: var(--wp-tab-nav-hover-border-right, 1px solid transparent);
+                border-bottom: var(--wp-tab-nav-hover-border-bottom, 1px solid #0d6efd);
+                border-left: var(--wp-tab-nav-hover-border-left, 1px solid transparent);
+                font: var(--wp-tab-nav-hover-font, bold 1.2rem arial, sans-serif);
+                color: var(--wp-tab-nav-hover-color, var(--wp-primary));
             }
         }
     }
 
     .panes {
         flex: 1 0 auto;
-        padding: var(--oi-tab-nav-panes-padding, 0rem);
+        padding: var(--wp-tab-nav-panes-padding, 0rem);
 
         .pane {
             display: none;
@@ -57,9 +57,9 @@
             }
         }
 
-        oi-loading {
-            width: var(--oi-tab-loading-size, 3rem);
-            height: var(--oi-tab-loading-size, 3rem);
+        wp-loading {
+            width: var(--wp-tab-loading-size, 3rem);
+            height: var(--wp-tab-loading-size, 3rem);
             display: block;
             margin: auto;
         }

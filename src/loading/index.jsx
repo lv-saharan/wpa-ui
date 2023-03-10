@@ -37,7 +37,7 @@ export default class extends uiBase {
     }
     let sizeCSS = `
     :host{
-      --oi-loading-size:${loadingSize};
+      --wp-loading-size:${loadingSize};
     }
     `;
 
@@ -45,7 +45,7 @@ export default class extends uiBase {
     if (color) {
       colorCSS = `
       :host {
-        --oi-loading-color:${color};
+        --wp-loading-color:${color};
       }
       `;
     }

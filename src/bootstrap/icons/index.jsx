@@ -73,18 +73,18 @@ export default class extends uiBase {
   static loadIcon = loadIcon;
   static css = `
     :host{
-      vertical-align:var(--oi-bicon-valign,middle) ;
+      vertical-align:var(--wp-bicon-valign,middle) ;
     }
     svg{
-      vertical-align:var(--oi-bicon-valign,middle) ;
+      vertical-align:var(--wp-bicon-valign,middle) ;
     }
   `;
 
   css() {
     let { size, color } = this.$props;
-    let fill = color ? color : "var(--oi-bi-color)";
-    let width = size ? `${size}rem` : "var(--oi-bi-width, 1rem)";
-    let height = size ? `${size}rem` : "var(--oi-bi-height, 1rem);";
+    let fill = color ? color : "var(--wp-bi-color)";
+    let width = size ? `${size}rem` : "var(--wp-bi-width, 1rem)";
+    let height = size ? `${size}rem` : "var(--wp-bi-height, 1rem);";
     return `
       :host svg{
         fill: ${fill} ;

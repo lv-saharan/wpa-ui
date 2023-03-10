@@ -21,7 +21,7 @@ const createCard = (file) => {
   }
   return (
     <div className="file">
-      <oi-icon
+      <wp-icon
         view-box="1024"
         name={getFileType(file.ext)}
         type="file-type"
@@ -58,8 +58,8 @@ export default ({ component }) => {
 
                 <div className="actions">
                   <div class="position-absolute top-50 start-50 translate-middle">
-                    {isImage(file) && <oi-icon name="search" />}
-                    <oi-icon
+                    {isImage(file) && <wp-icon name="search" />}
+                    <wp-icon
                       name="delete_forever"
                       onClick={(evt) => {
                         evt.preventDefault();
@@ -83,7 +83,7 @@ export default ({ component }) => {
                   component.open();
                 }}
               >
-                <oi-icon name="add" />
+                <wp-icon name="add" />
               </label>
             </div>
           </div>
