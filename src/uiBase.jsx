@@ -1,3 +1,3 @@
-import { h, classNames, Component } from "wpa";
+const { h, classNames, Component } = wpa
 
 export default class extends Component {}

@@ -1,4 +1,4 @@
-import { h, classNames, extractClass } from "wpa";
+const { h, classNames, extractClass } = wpa
 import uiBase from "../uiBase";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";

@@ -1,4 +1,4 @@
-import { h, Component, classNames, render } from "wpa";
+const { h, Component, classNames, render } = wpa
 import uiBase from "../uiBase";
 import css from "./index.scss";
 

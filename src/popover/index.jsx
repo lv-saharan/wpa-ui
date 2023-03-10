@@ -1,4 +1,4 @@
-import { h, classNames, createRef } from "wpa";
+const { h, classNames, createRef } = wpa
 import { computePosition, flip, arrow, shift, offset } from "@floating-ui/dom";
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";

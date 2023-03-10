@@ -1,11 +1,9 @@
-import { h, purgeCSSSS, getHost, classNames } from "wpa";
+const { h, purgeCSSSS, getHost, classNames } = wpa
 import uiBase from "../uiBase";
 import css from "./index.scss";
 import treeNode from "./node";
 import sortable from "../sortable";
-
 export { treeNode };
-
 export default class extends uiBase {
   static css = css;
   static defaultProps = {

@@ -1,4 +1,4 @@
-import   { h, classNames } from "wpa";
+const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import effect from "../effect";
@@ -24,13 +24,14 @@ export default class extends uiBase {
   //     "close",
   //     "transitions"
   //   );
-  static css =()=> getCSSStyleSheets(
-    "reboot",
-    "utilities",
-    "accordion",
-    "close",
-    "transitions"
-  );
+  static css = () =>
+    getCSSStyleSheets(
+      "reboot",
+      "utilities",
+      "accordion",
+      "close",
+      "transitions"
+    );
   static get DIRECTIONS() {
     return DIRECTIONS;
   }

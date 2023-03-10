@@ -4,12 +4,13 @@ import esbuild from "esbuild";
 import { dev } from "local-dev-server";
 import fs from "fs";
 import path from "path";
-let [mode] = process.argv.splice(2) ?? "prod";
+const [mode] = process.argv.splice(2) ?? "prod";
 
 export const outputRoot = `./dist`;
-let outfile = `${outputRoot}/wpa-ui.js`;
 
-let defaultOptions = {
+const outfile = `${outputRoot}/wpa-ui.js`;
+
+const defaultOptions = {
   jsxFactory: "h",
   jsxFragment: "h.f",
   format: "esm",
@@ -19,7 +20,7 @@ let defaultOptions = {
   external: ["wpa"],
 };
 
-let buildOptions = {
+const buildOptions = {
   ...defaultOptions,
   entryPoints: ["src/index.jsx"],
   outfile,
@@ -62,21 +63,34 @@ switch (mode) {
     break;
   case "dev":
     const { reload } = dev({ ...pkg.localDev.server, openBrowser: false });
-    const devOptions = {
-      watch: {
-        onRebuild(error, result) {
-          if (error) console.error("watch build failed:", error);
-          else {
-            console.log("watch build succeeded:", result);
-            reload("ui rebuild ok");
+    const watchPlugin = {
+      name: "watch-plugin",
+      setup(build) {
+        console.log("watch plugin setup");
+        build.onStart(() => {
+          console.log("build starting....");
+        });
+        build.onEnd((result) => {
+          if (result.errors.length == 0) {
+            console.log("build ok");
+          } else {
+            console.log("build error");
           }
-        },
+        });
       },
     };
-    esbuild.build({
+    let ctx = await esbuild.context({
       ...buildOptions,
-      ...devOptions,
+      write: false,
+      plugins: [
+        sassPlugin({
+          type: "css-text",
+        }),
+        watchPlugin,
+      ],
     });
+    await ctx.watch();
+    console.log("watching...");
 
     // for (let editorOption of editorOptions) {
     //     esbuild.build({

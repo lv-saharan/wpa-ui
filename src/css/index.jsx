@@ -1,4 +1,4 @@
-import { render, define, h, Component, setTheme } from "wpa";
+const { h, render, define, Component, setTheme } = wpa;
 
 let BASE_ROOT = "bootstrap";
 /**

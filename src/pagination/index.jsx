@@ -1,4 +1,4 @@
-import { h, classNames, extractClass } from "wpa";
+const { h, classNames, extractClass } = wpa
 import Pager from "../pager";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";

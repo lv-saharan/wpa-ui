@@ -1,4 +1,4 @@
-import { h, classNames, define, getHost, throttle } from "wpa";
+const { h, classNames, define, getHost, throttle } = wpa;
 import uiBase from "../uiBase";
 import css from "./node.scss";
 import sortable from "../sortable";

@@ -1,4 +1,4 @@
-import   { h, classNames } from "wpa";
+const { h, classNames } = wpa
 import { formatSize, getFileType } from "../../utils";
 
 export default ({ component }) => {

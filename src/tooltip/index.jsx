@@ -1,4 +1,4 @@
-import { h, classNames, createRef } from "wpa";
+const { h, classNames, createRef } = wpa
 import { getCSSStyleSheets } from "../css";
 import css from "./index.scss";
 import popover from "../popover";

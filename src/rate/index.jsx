@@ -1,4 +1,4 @@
-import { define, h, Component, classNames, render } from "wpa";
+const { h, define, Component, classNames, render } = wpa;
 import uiBase from "../uiBase";
 import css from "./index.scss";
 const STAR_TYPES = {

@@ -1,4 +1,4 @@
-import { h, classNames, createRef } from "wpa";
+const { h, classNames, createRef } = wpa
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import effect from "../effect";

@@ -1,4 +1,4 @@
-import { h, classNames, extractClass, createRef } from "wpa";
+const { h, classNames, extractClass, createRef } = wpa
 
 function validateElement(el) {
   const { validity } = el;

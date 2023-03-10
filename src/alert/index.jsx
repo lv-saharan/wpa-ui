@@ -1,10 +1,11 @@
-import   { h, classNames } from "wpa";
+const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 const CLASS_NAME_FADE = "fade";
 const CLASS_NAME_SHOW = "show";
 export default class extends uiBase {
-  static css = () => getCSSStyleSheets("reboot", "utilities", "alert", "close", "transitions");
+  static css = () =>
+    getCSSStyleSheets("reboot", "utilities", "alert", "close", "transitions");
   //   static updateOnAttributeChanged = true;
   static defaultProps = {
     themeColor: "primary",

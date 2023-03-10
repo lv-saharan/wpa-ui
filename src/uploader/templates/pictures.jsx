@@ -1,4 +1,4 @@
-import   { h, classNames } from "wpa";
+const { h, classNames } = wpa
 import { creatPreviewUrl } from "preview-utils";
 import { getFileType } from "../../utils";
 

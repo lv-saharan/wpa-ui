@@ -1,4 +1,4 @@
-import { define } from "wpa";
+const { define } = wpa;
 import utils from "./utils";
 import sortable from "./sortable";
 
