@@ -20,6 +20,7 @@ export default class extends uiBase {
   static defaultProps = {
     //编辑器引擎
     value: "",
+    relativeUrls: null,
     width: null,
     height: null,
     minWidth: null,
@@ -199,6 +200,7 @@ export default class extends uiBase {
       imageDimensions,
       imageTitle,
       imagePrependUrl,
+      relativeUrls,
       automaticUploads,
       filePickerTypes,
       filePickerCallback,
@@ -264,6 +266,7 @@ export default class extends uiBase {
       min_height: minHeight,
       max_width: maxWidth,
       max_height: maxHeight,
+      relative_urls: relativeUrls,
       resize,
       placeholder,
       setup: (editor) => {

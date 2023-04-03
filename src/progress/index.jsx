@@ -3,6 +3,7 @@ import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 
 export default class extends uiBase {
+  static updateOnAttributeChanged = true;
   static css = () => getCSSStyleSheets("reboot", "utilities", "progress");
 
   static defaultProps = {
@@ -14,6 +15,7 @@ export default class extends uiBase {
     showPercent: false,
     striped: false,
     animated: false,
+    className: null,
   };
   static propTypes = {
     label: String,
@@ -24,9 +26,17 @@ export default class extends uiBase {
     showPercent: Boolean,
     striped: Boolean,
     animated: Boolean,
+    className: String,
   };
+  set value(val) {
+    this.$props.value = val;
+    this.update();
+  }
+  get value() {
+    return this.$props.value;
+  }
   setValue(val) {
-    this.$props.value = value;
+    this.$props.value = val;
     this.update();
   }
   css() {}

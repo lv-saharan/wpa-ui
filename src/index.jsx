@@ -69,7 +69,7 @@ customElements.define("wp-form", form, { extends: "form" });
 const importURL = import.meta.url;
 
 wpa.ui = {
-  version: "1.0.3",
+  version: "1.0.5",
   utils,
   css,
   effect,
