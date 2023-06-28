@@ -2,6 +2,39 @@ const { h, Component } = wpa
 import uiBase from "../uiBase";
 import css from "./index.scss";
 
+
+/** 
+ * @module MonacoCoder 
+ * @see {@link https://github.com/microsoft/monaco-editor|monaco}
+ * @desc 代码编辑器
+*/
+
+/**
+ * @typedef {Object} Item
+ * @property {string} label 导航标签
+ * @property {string} [href]  导航链接
+ */
+   
+
+/**
+ * @typedef {Object} Props
+ * @property {string} codes  代码 
+ * @property {string} [language]  语言 默认：javaScript
+ * @property {number} [fontSize]  语言 默认：12
+ * @property {boolean} [automaticLayout]  自动布局 默认：true
+ */
+   
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+     <wp-coder         language="javascript"
+                        codes="let a=1;"
+     ></wp-coder>
+
+ */
+
 export default class extends uiBase {
   static css = [
     () => {
@@ -36,9 +69,15 @@ export default class extends uiBase {
   };
   #monaco;
 
+  /**
+   * 获取编辑器代码
+   */
   get value() {
     return this.editor?.getValue();
   }
+  /**
+   * 设置编辑器代码
+   */
   set value(val) {
     this.editor?.setValue(val);
   }

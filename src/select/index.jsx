@@ -1,7 +1,56 @@
-const { h, classNames, extractClass } = wpa
+const { h, classNames, extractClass } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import css from "./index.scss";
+
+/**
+ * @module Select
+ * @desc 选择组件
+ * @example
+ <wp-select
+    values={[]}
+    options={options}
+    class="form-control"
+  ></wp-select>
+  <hr />
+  <h3>多选 可搜索</h3>
+  <wp-select
+    searchable
+    values={[]}
+    options={options}
+    class="form-control"
+  ></wp-select>
+  <hr />
+  <h3>单选</h3>
+  <wp-select
+    searchable
+    options={options}
+    multiple="false"
+    class="form-control"
+  ></wp-select> 
+
+*/
+
+/**
+ * @typedef {Object} Option
+ * @property {jsx} text 显示文本
+ * @property {string|number} value 值
+ */
+
+/**
+ * @typedef {Object} Props
+ * @property {boolean} multiple 多选 默认：true
+ * @property {boolean} [preserveOrder] 保持顺序，默认:true
+ * @property {boolean} [required] 必选 默认：false
+ * @property {boolean} [searchable] 可搜索 默认：false
+ * @property {Array.<Option>} [options] 选项
+ * @property {Array} [values] 选中项的Keys
+ * @property {number|string} [value] 单选时选中项Key
+ * @property {number} [min] 最少选中数量
+ * @property {number} [max] 最多选中数量
+ * @property {function } [createOption] 创建选项
+ * @property {function } [createSelected] 创建选中项
+ */
 
 export default class extends uiBase {
   static css = [
@@ -17,7 +66,7 @@ export default class extends uiBase {
     max: Number,
   };
   static defaultProps = {
-    options: [], //value:text
+    options: [], //value:text,element
     values: [],
     value: null,
     multiple: true,
@@ -43,7 +92,9 @@ export default class extends uiBase {
             />
           )}
 
-          <label class="form-check-label flex-grow-1">{option.text}</label>
+          <label class="form-check-label flex-grow-1">
+            {option.element ?? option.text}
+          </label>
         </div>
       );
     },
@@ -72,15 +123,25 @@ export default class extends uiBase {
     },
   };
 
+  /**
+   * 获取单选值
+   */
   get value() {
     return this.$props.value;
   }
+  /**
+   * 设置单选值
+   */
   set value(val) {
     this.$props.value = val;
   }
+  /**
+   * 获取多选值
+   */
   get values() {
     return this.$props.values;
   }
+
   get validity() {
     const { required, values, min, max, multiple } = this.$props;
     const result = {
@@ -108,6 +169,9 @@ export default class extends uiBase {
   }
   //已经检查过有效性
   #checked = false;
+  /**
+   * 验证
+   */
   checkValidity() {
     this.#checked = true;
     const valid = this.validity.valid;
@@ -118,9 +182,15 @@ export default class extends uiBase {
     }
     return valid;
   }
+  /**
+   * 显示选项
+   */
   showOptions() {
     this.$("wp-dropdown").show();
   }
+  /**
+   * 隐藏选项
+   */
   hideOptions() {
     this.$("wp-dropdown").hide();
   }
@@ -206,6 +276,12 @@ export default class extends uiBase {
       }
     });
   }
+  /**
+   * 切换选项状态（选中|取消）
+   * @param {Option} option
+   * @param {boolean} hideOptions
+   * @fires module:Select#change
+   */
   toggleOption(option, hideOptions = true) {
     const { values, multiple } = this.$props;
 
@@ -223,6 +299,16 @@ export default class extends uiBase {
     if (hideOptions) this.#searchKey = null;
     this.updateSelf();
     if (this.#checked) this.checkValidity();
+    /**
+     * @event module:Select#change 值变化
+     * @prop {string|number} value 当前值
+     * @example
+     *
+     * <wp-select onChange={evt=>{
+     *    let value=evt.detail
+     *    //do something
+     * }} />
+     */
     this.fire("change", multiple ? { values } : { value: this.value });
   }
   #searchKey;

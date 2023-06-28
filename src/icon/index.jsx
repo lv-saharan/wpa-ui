@@ -65,6 +65,28 @@ const createSvg = async (name, type, mode, props = {}) => {
     icon
   );
 };
+
+
+/** 
+ * @module ICON 
+ * @desc 图标组件
+ * @example 
+  
+   <wp-icon name="email" size="2" color="red"/>
+
+*/
+ 
+/**
+ * @typedef {Object} Props
+ * @property {string} name 名称 如：home  See:{@link https://marella.me/material-design-icons/demo/svg/|material-design-icons}
+ * @property {number} [viewBox]  ViewBox  svg viewbox 大小默认16
+ * @property {string} [type]  图标类型 默认：filled，如：filled，outlined，round，sharp，two-tone，file-type
+ * @property {number} [size]  大小 size倍的rem的宽高，可以通过--wp-icon-width,--wp-icon-height 指定
+ * @property {string} [color]  颜色 如：red,#fff,也可以 --wp-icon-color指定
+ * 
+ */
+
+
 export default class extends uiBase {
   static updateOnAttributeChanged = true;
   static propTypes = {

@@ -2,8 +2,62 @@ const { h, classNames, extractClass } = wpa
 import Pager from "../pager";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";
+
+
 /**
- *bootstrap style
+ * @module Pagination
+ * @desc bootstrap风格分页组件，继承自Pager组件
+ * @example
+<wp-pagination
+      total="1000"
+      createInfo={(props, pager) => {
+        let { pageNum } = props;
+        let { pageCount } = pager;
+        return (
+          <div class="info">
+            <span class="curr">當前{pageNum}</span>/
+            <span class="total">總共{pageCount}</span>
+          </div>
+        );
+      }}
+    />
+    <wp-pagination
+      css={`
+        :host {
+          --wp-pager-page-bgcolor: #eee;
+        }
+      `}
+      page-count="100"
+      prev-text="上一頁"
+      next-text="下一頁"
+    />
+
+
+*/
+
+/**
+ * @typedef {Object} Props
+ * @property {string} aligin 对齐方式 默认:left
+ * @property {number} pageNum 页码 默认：1
+ * @property {number} [pageCount] 页数 默认：10
+ * @property {number} [pageSize] 分页大小 默认：10
+ * @property {number } [linksCount] 每页链接数 默认：10
+ * @property {number } [total] 条数
+ * @property {jsx } [prev] 上一页
+ * @property {jsx } [next] 下一页
+ * @property {jsx } [first] 第一页
+ * @property {jsx } [last] 最后一页
+ * @property {function} [createPrev] 创建上一页
+ * @property {function} [createNext] 创建下一页
+ * @property {function} [createFirst] 创建第一页
+ * @property {function} [createLast] 创建最后一页
+ * @property {function} [createPages] 创建分页
+ * @property {function} [createInfo] 创建分页信息
+ * @property {function} [createJumper] 创建跳转
+ */
+/**
+ * @hideconstructor
+ * @extends module:Pager
  */
 export default class extends Pager {
   static css = [

@@ -1,9 +1,14 @@
 const { h, render, define, Component, setTheme } = wpa;
 
+/**
+ * @module CSS
+ * @desc 样式系统
+ */
+
 let BASE_ROOT = "bootstrap";
 /**
  * 设置一个别的目录作为加载样式的根目录
- * @param {*} baseRoot
+ * @param {string} baseRoot 样式文件根目录 默认 bootstrap
  */
 export function setBaseRoot(baseRoot) {
   BASE_ROOT = baseRoot;
@@ -13,7 +18,7 @@ export function setBaseRoot(baseRoot) {
 let BASE_URL = new URL(`./${BASE_ROOT}/`, import.meta.url).href;
 /**
  * 这样可以在应用初始化的时候选择把样式目录指定到特定的服务地址
- * @param {*} baseUrl
+ * @param {string} baseUrl 样式基地址
  */
 export function setBaseUrl(baseUrl) {
   BASE_URL = baseUrl;
@@ -21,9 +26,10 @@ export function setBaseUrl(baseUrl) {
 
 /**
  * 加载指定根地址下的css
- * @param {*} css
- * @param {*} baseUrl
- * @returns
+ * @param {string} css 样式名称 ,bootstrap 包含："accordion","alert","badge","breadcrumb","button-group","buttons","card","carousel","close","containers","dropdown","forms","grid","images","list-group","modal","nav","navbar","offcanvas","pagination","placeholders","popover","progress","reboot","root","scrollbar","spinners","tables","toasts","tooltip","transitions","utilities"
+ * @param {string} [baseUrl] 样式基地址
+ * @returns {string}
+ * @ignore
  */
 let loadStyleSheet = (css, baseUrl = BASE_URL) => {
   return fetch(getStyleSheetUrl(css, baseUrl))
@@ -38,15 +44,16 @@ let loadStyleSheet = (css, baseUrl = BASE_URL) => {
 };
 /**
  * 默认都是通过fetch获取，也可以替换掉这种模式
- * @param {Function} loader
- * @returns
+ * @param {function} loader
+ * @returns {function}
  */
 export const setStyleSheetLoader = (loader) => (loadStyleSheet = loader);
 /**
  * link rel 方式插入css,很少使用
- * @param {*} css
- * @param {*} parent
- * @param {*} baseUrl
+ * @param {string} css
+ * @param {HTMLElement|string} parent
+ * @param {string} baseUrl
+ * @ignore
  */
 const addStyleSheet = (css, parent, baseUrl = BASE_URL) => {
   let $link = (
@@ -54,7 +61,12 @@ const addStyleSheet = (css, parent, baseUrl = BASE_URL) => {
   );
   render($link, parent ?? "body");
 };
+
 /**
+ * 引用重置样式
+ * @param {HTMLElement|string} parent
+ * @param {string} baseUrl
+ * @ignore
  *
  */
 const addRebootStyleSheet = (parent, baseUrl = BASE_URL) => {
@@ -62,9 +74,10 @@ const addRebootStyleSheet = (parent, baseUrl = BASE_URL) => {
 };
 /**
  * 用基地址和css名称生成css完整路径
- * @param {*} css
- * @param {*} baseUrl
- * @returns
+ * @param {string} css
+ * @param {string} baseUrl
+ * @returns {URL}
+ * @ignore
  */
 const getStyleSheetUrl = (css, baseUrl = BASE_URL) => {
   try {
@@ -76,6 +89,13 @@ const getStyleSheetUrl = (css, baseUrl = BASE_URL) => {
 
 const CSSStyleSheetMap = new Map();
 
+/**
+ * 获取指定的css文件
+ * @async
+ * @param {string} css
+ * @param {string} baseUrl
+ * @returns {CSSStyleSheet}
+ */
 export const getCSSStyleSheet = async (css, baseUrl = BASE_URL) => {
   let key = `${baseUrl}/${css}`;
   let cssss = CSSStyleSheetMap.get(key);
@@ -103,12 +123,22 @@ export const getCSSStyleSheet = async (css, baseUrl = BASE_URL) => {
   return cssss;
 };
 
+/**
+ * 获取多个css文件
+ * @async
+ * @param  {...string} csses
+ * @returns {Array.<CSSStyleSheet>}
+ */
 export const getCSSStyleSheets = (...csses) => {
   return Promise.all(csses.map((css) => getCSSStyleSheet(css)));
 };
 
 import stylesheets from "../bootstrap/stylesheets";
 
+/**
+ * bootstrap 所有的样式单
+ * @enum {string}
+ */
 export const CSSStyleSheets = {};
 stylesheets.forEach((css) => {
   Object.defineProperty(CSSStyleSheets, css, {
@@ -117,17 +147,42 @@ stylesheets.forEach((css) => {
     },
   });
 });
+
+/**
+ * 预加载样式
+ * @param {Array.<string>} csses
+ */
 export const preLoad = (csses = stylesheets) => {
   csses.forEach((css) => {
     getCSSStyleSheet(css);
   });
 };
+
+/**
+ * 使用主题样式
+ * @param {string} theme 主题名称，通过约定规则加载
+ * @param {string} [baseUrl]
+ */
 export const useTheme = async (theme, baseUrl = BASE_URL) => {
   let themeCSS = await loadStyleSheet(`theme.${theme}`, baseUrl);
   setTheme(themeCSS);
 };
 
-export const timingClassNames = (element, settings, times = 1) => {
+/**
+ * @typedef {object} Setting
+ * @property {string|Array.<string>} classNames
+ * @property {number} duration
+ * @property {number} delay
+ * @property {function} [callback]
+ */
+
+/**
+ * 随时间变化的样式方法
+ * @param {HTMLElement} element
+ * @param {Array.<Setting>} settings
+ * @param {number} times
+ */
+export function timingClassNames(element, settings, times = 1) {
   if (
     settings instanceof Array &&
     settings.length &&
@@ -166,7 +221,7 @@ export const timingClassNames = (element, settings, times = 1) => {
     };
     run();
   }
-};
+}
 export default {
   StyleSheets: stylesheets,
   CSSStyleSheets,

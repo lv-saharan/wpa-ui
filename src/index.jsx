@@ -1,3 +1,10 @@
+/**
+ * @file WPA UI  Source Files
+ * @desc 采用bootstrap样式
+ * @see {@link https://getbootstrap.com/docs/5.3/|bootstrap}
+ * @author lv.saharan
+ */
+
 const { define } = wpa;
 import utils from "./utils";
 import sortable from "./sortable";

@@ -4,6 +4,65 @@ import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import css from "./index.scss";
 import effect from "../effect";
+
+
+/**
+ *@module Popover 
+ *@desc 弹出组件
+ *@example
+ <wp-popover
+    placement="right"
+    css={`
+      .popover {
+        --wp-popover-bg: black;
+      }
+
+      .popover-body {
+        --wp-popover-body-color: white;
+        width: 20rem;
+      }
+    `}
+  >
+    <button class="btn  btn-primary">slot 一个button</button>
+
+    <div slot="body">
+      this is a tip And here's some amazing content. It's very engaging.
+      Right?
+    </div>
+  </wp-popover>
+
+  <wp-popover
+    placement="right"
+    header="test"
+    body={
+      <p style="width:20rem;">
+        hello....，Each of these base placements has an alignment in the
+        form -start and -end. For example, 'right-start', or
+        'bottom-end'. These allow you to align the tooltip to the edges
+        of the button, rather than centering it
+      </p>
+    }
+  >
+    <button class="btn  btn-primary">slot 一个button2 </button>
+  </wp-popover>
+*/
+ 
+   
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [placement] 位置 如： top-start ,top-end , right, right-start, right-end , bottom , bottom-start, bottom-end , left, left-start, left-end
+ * @property {HTMLElement|string} [reference]  触发元素
+ * @property {jsx} [header]  标题部分 支持slot=header
+ * @property {jsx} [body]  内容部分 支持slot=body
+ * @property {string} [strategy]  定位方式 默认： fixed ；absolute | fixed;
+ * @property {number} [offset]  偏移量 默认：6
+ * @property {string} [triggerShow]  显示事件 默认：mouseenter focus
+ * @property {string} [triggerHide]  隐藏事件 默认：mouseleave blur
+ * 
+ */
+   
+
 export default class extends uiBase {
   static css = [
     () => getCSSStyleSheets("reboot", "utilities", "transitions", "popover"),
@@ -15,18 +74,6 @@ export default class extends uiBase {
     reference: null, //哪個對象？
     strategy: "fixed", //'absolute' | 'fixed';
     placement: "bottom",
-    // | 'top'
-    // | 'top-start'
-    // | 'top-end'
-    // | 'right'
-    // | 'right-start'
-    // | 'right-end'
-    // | 'bottom'
-    // | 'bottom-start'
-    // | 'bottom-end'
-    // | 'left'
-    // | 'left-start'
-    // | 'left-end';
     triggerShow: "mouseenter focus", //mouseenter focus click
     triggerHide: "mouseleave blur", //mouseleave blur click
     offset: 6,
@@ -62,6 +109,7 @@ export default class extends uiBase {
       return assignedElements.at(0);
     }
   }
+
   setPosition() {
     let { placement, offset: _offset, strategy } = this.$props;
     let reference = this.#$reference;
@@ -113,6 +161,9 @@ export default class extends uiBase {
     }
   }
   #visible = false;
+  /**
+   * 显示
+   */
   show() {
     this.#visible = true;
     Object.assign(this.$element.style, {
@@ -122,6 +173,9 @@ export default class extends uiBase {
     this.setPosition();
     effect.fade.show(this.$element);
   }
+   /**
+   * 隐藏
+   */
   hide() {
     this.#visible = false;
     effect.fade.hide(this.$element);
@@ -129,6 +183,9 @@ export default class extends uiBase {
       display: "none",
     });
   }
+  /**
+   * 切换（隐藏|显示） 
+   */
   toggle() {
     if (this.#visible) this.hide();
     else {

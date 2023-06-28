@@ -2,10 +2,59 @@ const { h, classNames } = wpa
 import uiBase from "../uiBase";
 import css from "./index.scss";
 
+
 /**
- *
- * Pager.first、last、prev、next 可以填充到指定位置
+ * @module Pager
+ * @desc 分页组件
+ * @example
+<wp-pager
+      total="1000"
+      createInfo={(props, pager) => {
+        let { pageNum } = props;
+        let { pageCount } = pager;
+        return (
+          <div class="info">
+            <span class="curr">當前{pageNum}</span>/
+            <span class="total">總共{pageCount}</span>
+          </div>
+        );
+      }}
+    />
+    <wp-pager
+      css={`
+        :host {
+          --wp-pager-page-bgcolor: #eee;
+        }
+      `}
+      page-count="100"
+      prev-text="上一頁"
+      next-text="下一頁"
+    />
+
+
+*/
+
+/**
+ * @typedef {Object} Props
+ * @property {number} pageNum 页码 默认：1
+ * @property {number} [pageCount] 页数 默认：10
+ * @property {number} [pageSize] 分页大小 默认：10
+ * @property {number } [linksCount] 每页链接数 默认：10
+ * @property {number } [total] 条数
+ * @property {jsx } [prev] 上一页
+ * @property {jsx } [next] 下一页
+ * @property {jsx } [first] 第一页
+ * @property {jsx } [last] 最后一页
+ * @property {function} [createPrev] 创建上一页
+ * @property {function} [createNext] 创建下一页
+ * @property {function} [createFirst] 创建第一页
+ * @property {function} [createLast] 创建最后一页
+ * @property {function} [createPages] 创建分页
+ * @property {function} [createInfo] 创建分页信息
+ * @property {function} [createJumper] 创建跳转
  */
+
+ 
 export default class extends uiBase {
   static css = css;
   static propTypes = {
@@ -165,10 +214,16 @@ export default class extends uiBase {
     },
   };
 
+  /**
+   * 当前页码
+   */
   get currPageNum() {
     return this.$props.pageNum;
   }
 
+  /**
+   * 分页数
+   */
   get pageCount() {
     let { total, pageSize, pageCount } = this.$props;
     if ((total || total === 0) && pageSize) {
@@ -177,6 +232,11 @@ export default class extends uiBase {
     return pageCount;
   }
 
+  /**
+   * 跳转至分页
+   * @param {number} pageNum 
+   * @fires module:Pager#paged
+   */
   goto(pageNum) {
     let { pageCount } = this.$props;
 
@@ -184,6 +244,16 @@ export default class extends uiBase {
       this.update$Props({
         pageNum,
       }).then(() => {
+        /**
+         * @event module:Pager#paged 分页切换
+         * @prop {number} pageNum  当前页码
+         * @example
+         *
+         * <wp-pager onPaged={evt=>{
+         *    let pageNum=evt.detail
+         *    //do something
+         * }} />
+         */
         this.fire("paged", pageNum);
       });
     }

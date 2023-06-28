@@ -54,8 +54,31 @@ const createSvg = async (name, props = {}) => {
     icon
   );
 };
+
+
+/** @module BootstrapIcon */
+ 
+/**
+ * @typedef {Object} Props
+ * @property {string} name 名称 如：home  See:{@link https://icons.getbootstrap.com/|bootstrap icons}
+ * @property {number} [viewBox]  ViewBox  svg viewbox 大小默认16
+ * @property {number} [size]  大小 size倍的rem的宽高，可以通过--wp-bi-width,--wp-bi-height 指定
+ * @property {string} [color]  颜色 如：red,#fff,也可以 --wp-bi-color指定
+ * 
+ */
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ * 
+ *   <wp-bi name="email" size="2" color="red"></wp-bi>
+ */
 export default class extends uiBase {
   static updateOnAttributeChanged = true;
+  /**
+   * @type Props
+   */
   static propTypes = {
     name: String,
     viewBox: Number,

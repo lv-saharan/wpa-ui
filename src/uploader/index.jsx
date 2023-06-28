@@ -1,4 +1,4 @@
-const { h, classNames } = wpa
+const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";
@@ -14,6 +14,39 @@ const STATUS = {
   UPLOADED: "UPLOADED",
   ERROR: "ERROR",
 };
+
+/**
+ * @module Uploader
+ * @desc 上传组件
+ * @example
+<wp-uploader files={files} multiple></wp-uploader> 
+*/
+
+/**
+ * @typedef {Object} Resource
+ * @property {string}  id
+ * @property {string}  name
+ * @property {string}  ext
+ * @property {number}  size
+ * @property {string}  type
+ * @property {Date}  lastModified
+ * @property {File}  file
+ *
+ */
+
+/**
+ * @typedef {Object} Props
+ * @property {string} accept 文件类别
+ * @property {string} action 上传地址
+ * @property {Object|function} [headers] 附加头信息
+ * @property {boolean} [multiple] 多选 默认：false
+ * @property {boolean} [autoUpload] 自动上传 默认：false
+ * @property {boolean} [allowSort] 允许排序 默认：false
+ * @property {number|boolean} [limit] 允许数量  默认：false
+ * @property {boolean} [withCredentials] 允许cookie
+ * @property { Array.<Resource>} files 文件列表
+ */
+
 export default class extends uiBase {
   static creatPreviewUrl = creatPreviewUrl;
   static get STATUS() {
@@ -78,6 +111,16 @@ export default class extends uiBase {
           }
           resource.status = STATUS.UPLOADED;
           // Object.assign(file, data);
+          /**
+           * @event module:Uploader#progress 上传完成
+           * @prop {Object} data 上传信息 { resource, data }
+           * @example
+           *
+           * <wp-uploader onUploaded={evt=>{
+           *    let {resource, data  }=evt.detail
+           *    //do something
+           * }} />
+           */
           this.fire("uploaded", { resource, data, uploader: this });
           this.refresh();
         }
@@ -96,6 +139,16 @@ export default class extends uiBase {
         if (e.lengthComputable) {
           let percentage = Math.ceil((e.loaded / e.total) * 100);
           resource.progress = percentage;
+          /**
+           * @event module:Uploader#progress 上传进度
+           * @prop {Object} data 进度信息 { resource, loaded }
+           * @example
+           *
+           * <wp-uploader onProgress={evt=>{
+           *    let {resource, loaded }=evt.detail
+           *    //do something
+           * }} />
+           */
           this.fire("progress", { resource, loaded: e.loaded, uploader: this });
           console.log(percentage + "%");
           this.refresh();
@@ -116,14 +169,42 @@ export default class extends uiBase {
   };
   #replaceIndex = -1;
 
+  /**
+   * 选择文件
+   * @param {number} index 插入的位置
+   */
   open(index = -1) {
     this.#replaceIndex = index;
     this.$("#files").click();
+    /**
+     * @event module:Uploader#open 选择文件
+     * @prop {Object} data 文件插入点 { index }
+     * @example
+     *
+     * <wp-uploader onOpen={evt=>{
+     *    let {index }=evt.detail
+     *    //do something
+     * }} />
+     */
     this.fire("open", { index });
   }
+  /**
+   * 删除文件
+   * @param {number} index
+   */
   remove(index) {
     this.$props.files?.splice(index, 1);
     this.updateSelf();
+    /**
+     * @event module:Uploader#remove 删除文件
+     * @prop {Object} data 删除信息 { index }
+     * @example
+     *
+     * <wp-uploader onRemove={evt=>{
+     *    let {index}=evt.detail
+     *    //do something
+     * }} />
+     */
     this.fire("remove", { index });
   }
 
@@ -144,6 +225,16 @@ export default class extends uiBase {
         };
       });
       all.splice(this.#replaceIndex, 1, ...replaceFiles);
+      /**
+       * @event module:Uploader#replaced 替换文件
+       * @prop {Object} data 替换信息 { index, replaceFiles }
+       * @example
+       *
+       * <wp-uploader onReplaced={evt=>{
+       *    let {index,replaceFiles}=evt.detail
+       *    //do something
+       * }} />
+       */
       this.fire("replaced", { index: this.#replaceIndex, replaceFiles });
     } else {
       let selected = Array.from(files).map((file) => {
@@ -159,6 +250,16 @@ export default class extends uiBase {
         };
       });
       all.push(...selected);
+      /**
+       * @event module:Uploader#selected 选择了文件
+       * @prop {Array.<Resource>} resources 选择的资源
+       * @example
+       *
+       * <wp-uploader onSelected={evt=>{
+       *    let resources=evt.detail.selected
+       *    //do something
+       * }} />
+       */
       this.fire("selected", { selected });
     }
     this.updateSelf();

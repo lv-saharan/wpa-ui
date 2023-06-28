@@ -1,29 +1,65 @@
+/**
+ * @file Accordion Source File
+ * @author lv.saharan
+ */
+
 const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import effect from "../effect";
-const DIRECTIONS = {
+
+/**
+ * @readonly
+ * @enum {string}
+ */
+const  DIRECTIONS= {
+  /**
+   * @description 水平
+   */
   HORIZONTAL: "horizontal",
+  /**
+   * @description 垂直
+   */
   VERTICAL: "vertical",
 };
 const CLASS_NAME_COLLAPSED = "collapsed";
+
+
+/** 
+ * @module Accordion 
+ * @desc 手风琴组件
+ * @example 
+ 
+  <wp-accordion first-open items={[{key:"home",header:"Home",body:<h1>body</h1>}]}/>
+*/
+ 
 /**
- * items {
- * key,
- * opened,
- * header,
- * body
- * }
+ * @typedef {Object} Props
+ * @property {boolean} [alwaysOpen] 一直打开 
+ * @property {boolean} [firstOpen] 第一个打开
+ * @property {number} [transitionDuration] 折叠速度
+ * @property {string } [direction] 显示方向 horizontal | vertical
+ * @property {Array.<Item>} items 项
  */
+   
+/**
+ * @typedef {Object} Item
+ * @property {string} [key] 关键字（可选）
+ * @property {boolean} [opened] 是否展开
+ * @property {string|JSX} header Header
+ * @property {string|JSX} body  Body
+ */
+ 
 export default class extends uiBase {
-  // static css = () =>
-  //   getCSSStyleSheets(
-  //     "reboot",
-  //     "utilities",
-  //     "accordion",
-  //     "close",
-  //     "transitions"
-  //   );
+  /**
+   * 默认注入的bootstrap样式：
+   *  "reboot",
+      "utilities",
+      "accordion",
+      "close",
+      "transitions"
+   * @returns {Array}
+   */
   static css = () =>
     getCSSStyleSheets(
       "reboot",
@@ -32,17 +68,24 @@ export default class extends uiBase {
       "close",
       "transitions"
     );
+
+
   static get DIRECTIONS() {
     return DIRECTIONS;
   }
+  /**
+   * 组件属性
+   * @type {Props}
+   * 
+   */
   static defaultProps = {
-    alwayOpen: false,
+    alwaysOpen: false,
     firstOpen: false,
     transitionDuration: 0.35,
     direction: DIRECTIONS.VERTICAL,
   };
   static propTypes = {
-    alwayOpen: Boolean,
+    alwaysOpen: Boolean,
     firstOpen: Boolean,
     transitionDuration: Number,
     direction: String,
@@ -54,11 +97,11 @@ export default class extends uiBase {
       }`;
   }
   install() {
-    let { items, alwayOpen, firstOpen } = this.$props;
+    let { items, alwaysOpen, firstOpen } = this.$props;
     if (items.length > 0 && firstOpen) {
       items[0].opened = true;
     }
-    if (!alwayOpen) {
+    if (!alwaysOpen) {
       let opens = items.filter((item) => item.opened);
       if (opens.length) {
         let firstOpened = opens.shift();
@@ -81,15 +124,45 @@ export default class extends uiBase {
     if (item.opened) {
       //show
       effect.collapse.show($collapse);
+      /**
+       * @event module:Accordion#collapseShow 展开
+       * @prop {Item} item 当前展开项
+       * @example
+       * 
+       * <wp-accordion onCollapseShow={evt=>{
+       *    let item=evt.detail
+       *    //do something
+       * }} />
+       */
       this.fire("collapseShow", item);
     } else {
+      /**
+       * @event module:Accordion#collapseHide 关闭
+       * @prop {Item} item 当前关闭项
+       * @example
+       * 
+       * <wp-accordion onCollapseHide={evt=>{
+       *    let item=evt.detail
+       *    //do something
+       * }} />
+       */
       effect.collapse.hide($collapse);
       this.fire("collapseHide", item);
     }
   }
+  /**
+   * 折叠指定项
+   * @param {Item|number|string} item 可以是Object项，或该项的Index，或该项的Key
+   * @fires module:Accordion#toggle
+   */
   toggle(item) {
-    let { items, alwayOpen } = this.$props;
-    if (alwayOpen) {
+    let { items, alwaysOpen } = this.$props;
+    if (typeof item ==="number") {
+      item =items.at(item);
+    }else if(typeof item=="string"){
+      item=items.find(it=>it.key==item);
+    }
+    if (alwaysOpen) {
       this.#toggle(item);
     } else {
       let prevIndex = items.findIndex((_item) => _item.opened);

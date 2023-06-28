@@ -10,27 +10,92 @@ let $visibleDropDown = null;
 document.addEventListener("click", (evt) => {
   if ($visibleDropDown) $visibleDropDown.hide();
 });
+
+
+/**
+ *@module Dropdown 
+ *@desc 下拉菜单
+*/
+ 
+   
+
+/**
+ * @typedef {Object} Props
+ * @property {string} [placement] 位置 如： top-start ,top-end , right, right-start, right-end , bottom , bottom-start, bottom-end , left, left-start, left-end
+ * @property {string} [strategy]  定位方式 如：absolute,fixed
+ * @property {string} [trigger]  触发方式 如：click，focus
+ * @property {number} [offset]  偏移量 默认：0
+ * @property {jsx} [menu]  下拉内容，也可以通过slot显示
+ * @property {HTMLElement|string} [reference]  触发元素
+ * 
+ */
+   
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ 
+      <wp-dropdown
+            placement="bottom-start"
+            menu={
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+            }
+          >
+            <button class="btn btn-secondary" type="button">
+              Dropdown button1
+            </button>
+          </wp-dropdown>
+
+
+          <wp-dropdown placement="bottom-start">
+            <button class="btn btn-secondary" type="button">
+              Dropdown button1
+            </button>
+            <ul class="dropdown-menu" slot="menu">
+              <li>
+                <a class="dropdown-item" href="#">
+                  Action
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Something else here
+                </a>
+              </li>
+            </ul>
+          </wp-dropdown>
+ */
 export default class extends uiBase {
   static css = [
     () => getCSSStyleSheets("reboot", "utilities", "transitions", "dropdown"),
     css,
   ];
   static defaultProps = {
-    /**
-     *  
-    // | 'top'
-    // | 'top-start'
-    // | 'top-end'
-    // | 'right'
-    // | 'right-start'
-    // | 'right-end'
-    // | 'bottom'
-    // | 'bottom-start'
-    // | 'bottom-end'
-    // | 'left'
-    // | 'left-start'
-    // | 'left-end';
-     */
     placement: "bottom",
     strategy: "absolute",
     trigger: "click",
@@ -46,6 +111,9 @@ export default class extends uiBase {
   };
 
   #menuRef = createRef();
+  /**
+   * 菜单元素
+   */
   get $menu() {
     return this.#menuRef.current;
   }
@@ -83,6 +151,9 @@ export default class extends uiBase {
     });
   }
   #visible = false;
+  /**
+   * 显示
+   */
   show() {
     this.#visible = true;
     this.#$slot.focus();
@@ -96,6 +167,9 @@ export default class extends uiBase {
     $visibleDropDown = this;
     this.setPosition();
   }
+  /**
+   * 隐藏
+   */
   hide() {
     this.#visible = false;
     this.#$slot.classList.remove("show");
@@ -105,6 +179,9 @@ export default class extends uiBase {
       display: "none",
     });
   }
+  /**
+   * 折叠
+   */
   toggle() {
     if (this.#visible) this.hide();
     else {

@@ -16,6 +16,60 @@ const SELECTOR_ACTIVE = ".active";
 const SELECTOR_ITEM = ".carousel-item";
 const SELECTOR_ACTIVE_ITEM = SELECTOR_ACTIVE + SELECTOR_ITEM;
 
+
+/** 
+ * @module Carousel 
+ * @todo 需要支持垂直方向的动画
+*/
+
+  
+
+/**
+ * @typedef {Object} Props
+ * @property {boolean} [autoSlide] 自动播放 默认：true 
+ * @property {string} [pauseEvent]  暂停事件 默认：hover
+ * @property {number} [interval]  播放间隔 默认：2.3s
+ * @property {number} [duration]  动画时长 默认：0.6s
+ * @property {Array.<jsx>} items  幻灯内容 
+ * @property {function} [prevCtrl]  向前的按钮
+ * @property {function} [nextCtrl]  向后的按钮
+ * @property {function} [indicator]  导航按钮
+ * 
+ */
+   
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ * 
+   <wp-carousel
+      style="width:20rem; outline:#00FF00 dotted thick;"
+      duration=".3"
+      items={
+        <>
+          <img
+            src="https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7"
+            class="d-block w-100"
+            alt="...1"
+          />
+          <img
+            src="https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7"
+            class="d-block w-100"
+            alt="...2"
+            waiting="5"
+          />
+          <img
+            src="https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7"
+            class="d-block w-100"
+            alt="...3"
+          />
+        </>
+      }
+    ></wp-carousel>
+ * 
+ * 
+ */
 export default class extends uiBase {
   static css = [
     () => getCSSStyleSheets("reboot", "utilities", "carousel"),
@@ -75,19 +129,34 @@ export default class extends uiBase {
     `;
   }
   #activeIndex = 0;
+  /**
+   * activeIndex
+   */
   get activeIndex() {
     return this.#activeIndex;
   }
   #isSliding = false;
+  /**
+   * 是否播放中
+   */
   get isSliding() {
     return this.#isSliding;
   }
+  /**
+   * 所有播放项
+   */
   get $items() {
     return this.$$(".carousel-item");
   }
+  /**
+   * 激活项
+   */
   get $activeItem() {
     return this.$(".carousel-item.active");
   }
+  /**
+   * 暂停
+   */
   pause() {
     if (this.#isSliding) {
       triggerTransitionEnd(this);
@@ -97,10 +166,18 @@ export default class extends uiBase {
     this.#interval = null;
   }
 
+  /**
+   * 导航列表
+   * @type {Array.<HTMLElement>}
+   */
   get indicators() {
     return [...this.$("slot[name=indicators]").children];
   }
   #slideQueue = [];
+  /**
+   * 播放指定项
+   * @param {HTMLElement|number|boolean} isNext 
+   */
   slide(isNext = true) {
     //boolean,number,element
     if (this.#isSliding) return false;
@@ -195,6 +272,9 @@ export default class extends uiBase {
     }
   }
   #interval;
+  /**
+   * 循环播放
+   */
   cycle() {
     if (this.#interval) clearInterval(this.#interval);
     this.#interval = setInterval(

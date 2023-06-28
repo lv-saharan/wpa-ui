@@ -2,6 +2,30 @@ const { h, classNames, extractClass } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 
+
+
+/** @module Badge */
+ 
+/**
+ * @typedef {Object} Props
+ * @property {string} [text] 内容  badge内容，可以用子元素（slot）代替
+ * @property {boolean} [desc]  是否可关闭
+ * @property {number} [position] 位置 top|bottom|left|right|top-left|top-right|bottom-left|bottom-right
+ * 
+ */
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ * 
+ *  <button type="button" class="btn btn-primary position-relative">
+            消息
+            <wp-badge position="bottom-right" class="bg-danger">
+              <span style="color:black">999</span>
+            </wp-badge>
+    </button>
+ */
 export default class extends uiBase {
   static css = () => getCSSStyleSheets("reboot", "utilities", "badge");
 
@@ -11,7 +35,9 @@ export default class extends uiBase {
     position: false,
     // divider: null,
   };
-  static propTypes = {};
+  static propTypes = {
+
+  };
   css() {}
   render(props) {
     let { text, desc, position } = this.$props;

@@ -8,6 +8,29 @@ let min = true;
 let root = new URL(`./tinymce/`, import.meta.url).href;
 let jsFile = `./tinymce.js`;
 
+
+/**
+ * @module Tinymce
+ * @desc tinymce编辑器组件
+ * @example
+     <wp-tinymce
+        toolbar={['undo redo | bold italic underline | fontfamily fontsize',
+          'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent'
+        ]}
+        valid-elements='strong,em,span[style],a[href]'
+        valid-styles={{ '*': 'font-size,font-family,color,text-decoration,text-align' }}
+        value="<h1>default</h1>"
+        inline
+      ></wp-tinymce>
+*/
+
+/**
+ * @typedef {Object} Props
+ * @desc 设置项内容很多
+ * @see {@link https://www.tiny.cloud/docs/tinymce/6/|tinymce}
+ */
+
+
 export default class extends uiBase {
   static css = [() => getCSSStyleSheets("reboot", "scrollbar"), css];
   static propTypes = {
@@ -101,13 +124,24 @@ export default class extends uiBase {
     jsFile = value;
   }
 
+  /**
+   * 使用编辑器，这是一个异步方式，动态加载相关脚本
+   * @async
+   * @returns {Promise}
+   */
   static async use() {
     return await import(new URL(this.jsFile, this.root).href);
   }
+  /**
+   * 获取编辑器内容
+   */
   get value() {
     return this.$props.value;
   }
 
+  /**
+   * 设置编辑器内容
+   */
   set value(value) {
     this.$props.value = value;
     if (this.editor && this.#ready) {
@@ -145,6 +179,10 @@ export default class extends uiBase {
   }
   //已经检查过有效性
   #checked = false;
+  /**
+   * 验证
+   * @returns {boolean}
+   */
   checkValidity() {
     this.#checked = true;
     const valid = this.validity.valid;
@@ -156,6 +194,9 @@ export default class extends uiBase {
     return valid;
   }
 
+  /**
+   * 获取编辑器Id
+   */
   get editorId() {
     return `editor${this.elementId}`;
   }

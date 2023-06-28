@@ -1,12 +1,36 @@
+/**
+ * @author lv.saharan
+ */
 const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 const CLASS_NAME_FADE = "fade";
 const CLASS_NAME_SHOW = "show";
+
+
+/** @module Alert */
+ 
+/**
+ * @typedef {Object} Props
+ * @property {string} [themeColor] 主题色  primary | secondary | ...
+ * @property {boolean} [closeable]  是否可关闭
+ * @property {number} [transitionDuration] 关闭速度
+ */
+   
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ * <wp-alert  theme-color="secondary" > some conetent ! </wp-alert>
+ */
 export default class extends uiBase {
   static css = () =>
     getCSSStyleSheets("reboot", "utilities", "alert", "close", "transitions");
   //   static updateOnAttributeChanged = true;
+  /**
+   * @type {Props}
+   */
   static defaultProps = {
     themeColor: "primary",
     closeable: false,
@@ -24,6 +48,9 @@ export default class extends uiBase {
         transition: opacity ${this.$props.transitionDuration}s linear
     }`;
   }
+  /**
+   * 关闭
+   */
   close() {
     let $alert = this.$("div.alert");
     $alert.classList.remove(CLASS_NAME_SHOW);

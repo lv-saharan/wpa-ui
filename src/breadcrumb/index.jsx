@@ -1,15 +1,38 @@
 const { h, classNames } = wpa
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
+ 
+
+/** @module Breadcrumb */
+
 /**
- * item{
- * href,
- * label
- * }
+ * @typedef {Object} Item
+ * @property {string} label 导航标签
+ * @property {string} [href]  导航链接
+ */
+   
+
+/**
+ * @typedef {Object} Props
+ * @property {string|jsx} [divider] 分割线 如：/ 
+ * @property {Array.<Item>} [items]  导航项
+ */
+   
+
+ /**
+ * @extends uiBase
+ * @hideconstructor
+ * @example 
+ * <wp-breadcrumb items={items} divider="|" />
+ * 
+ * <wp-breadcrumb  items={items}   divider={<wp-icon name="keyboard_arrow_right" />} />
  */
 export default class extends uiBase {
   static css = () => getCSSStyleSheets("reboot", "utilities", "breadcrumb");
 
+  /**
+   * @type Props
+   */
   static defaultProps = {
     // divider: null,
   };

@@ -3,6 +3,31 @@ import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
 import css from "./index.scss";
 import effect from "../effect";
+
+/**
+ * @module Toast
+ * @desc 提示框
+ * @example
+  <wp-toast visible>
+    <span slot="header">
+      <img
+        src="https://tse1-mm.cn.bing.net/th/id/OIP-C.gAwrrAwnrp1bDE8Z-1ibmQHaJU?w=134&h=180&c=7&r=0&o=5&dpr=2.07&pid=1.7"
+        class="rounded me-2"
+        style="height:3rem;"
+        alt="..."
+      />
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+    </span>
+    hello!
+  </wp-toast>
+*/
+
+/**
+ * @typedef {Object} Props
+ * @property {boolean} visible 是否可见 默认：false 
+ */
+
 export default class extends uiBase {
   static css = [
     () => getCSSStyleSheets("reboot", "utilities", "toasts", "close"),
@@ -19,15 +44,22 @@ export default class extends uiBase {
   get closed() {
     return this.#closed;
   }
+  /**
+   * 关闭
+   */
   close() {
     this.#closed = true;
     effect.fade.hide(this).then(() => {
       this.update();
     });
   }
+
   show() {
     this.open();
   }
+  /**
+   * 打开
+   */
   open() {
     this.#closed = false;
     this.update();
