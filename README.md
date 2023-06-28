@@ -79,6 +79,8 @@ wp-echart
 
 # URL
 
+[wpa UI ,文档](http://wpa.flatweb.net/ui-docs/ "title")
+
 [wpa UI ,示例文档](http://wpa.flatweb.net/demo-docs/ "title")
 
 [wpa UI ,一点示例](http://wpa.flatweb.net/demos/usage/ui/ "title")

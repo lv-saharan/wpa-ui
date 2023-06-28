@@ -1,8 +1,3 @@
-/**
- * @file Accordion Source File
- * @author lv.saharan
- */
-
 const { h, classNames } = wpa;
 import uiBase from "../uiBase";
 import { getCSSStyleSheets } from "../css";
