@@ -9,6 +9,7 @@
 ``` json
   "type": "module",
   "scripts": {
+    "doc": "jsdoc -c jsdoc.config.json --verbose",
     "dev": "node esbuild.js dev",
     "build:all":"npm-run-all -s build:prod gen:icons build:icons build:loadings build:css build:coder",
     "build:prod": "node esbuild.js prod",
