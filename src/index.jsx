@@ -41,42 +41,98 @@ import table from "./table";
 import tinymce from "./tinymce";
 import echarts from "./echarts";
 
-define("wp-rate", rate);
-define("wp-tab", tab);
-define("wp-icon", icon);
-define("wp-bi", bicon);
-define("wp-pager", pager);
-define("wp-tree", tree);
-define("wp-loading", loading);
-define("wp-alert", alert);
-define("wp-accordion", accordion);
-define("wp-breadcrumb", breadcrumb);
-define("wp-modal", modal);
-define("wp-popover", popover);
-define("wp-uploader", uploader);
-define("wp-carousel", carousel);
-define("wp-badge", badge);
-define("wp-toast", toast);
-define("wp-progress", progress);
-define("wp-tooltip", tooltip);
-define("wp-layout", layout);
-define("wp-import", _import);
-define("wp-offcanvas", offcanvas);
-define("wp-pagination", pagination);
-define("wp-dropdown", dropdown);
-define("wp-coder", coder);
-define("wp-select", select);
-define("wp-table", table);
-define("wp-tinymce", tinymce);
-define("wp-echarts", echarts);
+const Prefix = "wp";
+export const RateTag = `${Prefix}-rate`;
+define(RateTag, rate);
 
-// define("wp-form", form);
-customElements.define("wp-form", form, { extends: "form" });
+export const TabTag = `${Prefix}-tab`;
+define(TabTag, tab);
+
+export const IconTag = `${Prefix}-icon`;
+define(IconTag, icon);
+
+export const BootstrapIconTag = `${Prefix}-bi`;
+define(BootstrapIconTag, bicon);
+
+export const PagerTag = `${Prefix}-pager`;
+define(PagerTag, pager);
+
+export const TreeTag = `${Prefix}-tree`;
+define(TreeTag, tree);
+
+export const LoadingTag = `${Prefix}-loading`;
+define(LoadingTag, loading);
+
+export const AlertTag = `${Prefix}-alert`;
+define(AlertTag, alert);
+
+export const AccordionTag = `${Prefix}-accordion`;
+define(AccordionTag, accordion);
+
+export const BreadcrumbTag = `${Prefix}-breadcrumb`;
+define(BreadcrumbTag, breadcrumb);
+
+export const ModalTag = `${Prefix}-modal`;
+define(ModalTag, modal);
+
+export const PopoverTag = `${Prefix}-popover`;
+define(PopoverTag, popover);
+
+export const UploaderTag = `${Prefix}-uploader`;
+define(UploaderTag, uploader);
+
+export const CarouselTag = `${Prefix}-carousel`;
+define(CarouselTag, carousel);
+
+export const BadgeTag = `${Prefix}-badge`;
+define(BadgeTag, badge);
+
+export const ToastTag = `${Prefix}-toast`;
+define(ToastTag, toast);
+
+export const ProgressTag = `${Prefix}-progress`;
+define(ProgressTag, progress);
+
+export const TooltipTag = `${Prefix}-tooltip`;
+define(TooltipTag, tooltip);
+
+export const LayoutTag = `${Prefix}-layout`;
+define(LayoutTag, layout);
+
+export const ImportTag = `${Prefix}-import`;
+define(ImportTag, _import);
+
+export const OffcanvasTag = `${Prefix}-offcanvas`;
+define(OffcanvasTag, offcanvas);
+
+export const PaginationTag = `${Prefix}-pagination`;
+define(PaginationTag, pagination);
+
+export const DropdownTag = `${Prefix}-dropdown`;
+define(DropdownTag, dropdown);
+
+export const CoderTag = `${Prefix}-coder`;
+define(CoderTag, coder);
+
+export const SelectTag = `${Prefix}-select`;
+define(SelectTag, select);
+
+export const TableTag = `${Prefix}-table`;
+define(TableTag, table);
+
+export const TinymceTag = `${Prefix}-tinymce`;
+define(TinymceTag, tinymce);
+
+export const EchartsTag = `${Prefix}-echarts`;
+define(EchartsTag, echarts);
+
+// define(`${Prefix}-form", form);
+customElements.define(`${Prefix}-form`, form, { extends: "form" });
 
 const importURL = import.meta.url;
 
 wpa.ui = {
-  version: "1.0.8",
+  version: "1.0.9",
   utils,
   css,
   effect,
@@ -111,6 +167,33 @@ wpa.ui = {
   sortable,
   tinymce,
   echarts,
+  EchartsTag,
+  TinymceTag,
+  TableTag,
+  SelectTag,
+  DropdownTag,
+  PaginationTag,
+  OffcanvasTag,
+  ImportTag,
+  LayoutTag,
+  TooltipTag,
+  ProgressTag,
+  ToastTag,
+  BadgeTag,
+  CarouselTag,
+  UploaderTag,
+  PopoverTag,
+  ModalTag,
+  BreadcrumbTag,
+  AccordionTag,
+  AlertTag,
+  LoadingTag,
+  TreeTag,
+  PagerTag,
+  BootstrapIconTag,
+  IconTag,
+  TabTag,
+  RateTag,
 };
 
 export {
