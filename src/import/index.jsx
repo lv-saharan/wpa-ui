@@ -60,6 +60,9 @@ export default class extends uiBase {
           } else if (typeof $module === "function") {
             const App = uniqueTag($module);
             this.#module = <App />;
+          } else if (typeof $module === "string") {
+            const App = $module;
+            this.#module = <App />;
           } else {
             this.#module = $module;
           }
