@@ -132,7 +132,7 @@ customElements.define(`${Prefix}-form`, form, { extends: "form" });
 const importURL = import.meta.url;
 
 wpa.ui = {
-  version: "1.0.10",
+  version: "1.0.11",
   utils,
   css,
   effect,

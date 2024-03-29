@@ -1,4 +1,4 @@
-const { h, classNames, extractClass, createRef } = wpa
+const { h, classNames, extractClass, createRef } = wpa;
 
 function validateElement(el) {
   const { validity } = el;
@@ -159,10 +159,10 @@ function submitHandler(evt) {
         </form>
 
  */
-export default class OIForm extends HTMLFormElement {
+export default class WPForm extends HTMLFormElement {
   /**
    * 验证表单
-   * @param {HTMLFormElement} form 
+   * @param {HTMLFormElement} form
    */
   static validate(form) {
     form.noValidate = true;
