@@ -1,4 +1,4 @@
-const { h, classNames } = wpa
+import { h, classNames } from "uiBase"
 import { creatPreviewUrl } from "preview-utils";
 import { getFileType } from "../../utils";
 

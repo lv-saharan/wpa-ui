@@ -1,4 +1,4 @@
-const { h, classNames } = wpa
+import { h, classNames } from "uiBase"
 import { formatSize, getFileType } from "../../utils";
 
 export default ({ component }) => {

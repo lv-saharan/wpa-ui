@@ -1,5 +1,4 @@
-const { h, classNames, extractClass } = wpa;
-import uiBase from "../uiBase";
+import uiBase,{ h, classNames, extractClass } from "uiBase";
 import { getCSSStyleSheets, timingClassNames } from "../css";
 import css from "./index.scss";
 import { isVisible, triggerTransitionEnd } from "bootstrap/js/src/util";

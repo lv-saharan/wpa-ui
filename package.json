@@ -1,6 +1,6 @@
 {
   "name": "wpa-ui",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "使用wpa开发的WebComponents库，样式采用bootstrap。可以作为标准的esmodule使用",
   "main": "src/index.jsx",
   "type": "module",
@@ -34,14 +34,14 @@
   "dependencies": {
     "@floating-ui/dom": "^1.0.12",
     "@material-design-icons/svg": "^0.11.9",
-    "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.2",
-    "echarts": "^5.4.1",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "echarts": "^5.5.0",
     "monaco-editor": "^0.34.1",
-    "preview-utils": "^1.0.1",
-    "sortablejs": "^1.15.0",
-    "tinymce": "^6.3.1",
-    "wpa": "^1.0.2"
+    "preview-utils": "^1.0.3",
+    "sortablejs": "^1.15.2",
+    "tinymce": "^6.8.3",
+    "wpa": "^1.0.13"
   },
   "repository": {
     "type": "git",

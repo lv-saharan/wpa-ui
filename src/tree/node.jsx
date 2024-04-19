@@ -1,5 +1,4 @@
-const { h, classNames, define, getHost, throttle } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, classNames, define, getHost, throttle } from "uiBase";
 import css from "./node.scss";
 import sortable from "../sortable";
 
@@ -152,7 +151,7 @@ class TreeNode extends uiBase {
     this.tree.expand(this.key, false);
     this.node.expanded = true;
     this.updateSelf();
-        /**
+    /**
      * @event module:Tree#nodeExpand 展开
      * @prop {Object} data 节点信息{ node, treeNode }
      * @example

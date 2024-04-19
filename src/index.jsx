@@ -4,8 +4,7 @@
  * @see {@link https://getbootstrap.com/docs/5.3/|bootstrap}
  * @author lv.saharan
  */
-
-const { define } = wpa;
+import { define } from "uiBase";
 import utils from "./utils";
 import sortable from "./sortable";
 
@@ -130,9 +129,9 @@ define(EchartsTag, echarts);
 customElements.define(`${Prefix}-form`, form, { extends: "form" });
 
 const importURL = import.meta.url;
-
+import { version } from "../package.json";
 wpa.ui = {
-  version: "1.0.11",
+  version,
   utils,
   css,
   effect,

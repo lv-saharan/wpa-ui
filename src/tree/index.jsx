@@ -1,5 +1,4 @@
-const { h, purgeCSSSS, getHost, classNames } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, purgeCSSSS, getHost, classNames } from "uiBase";
 import css from "./index.scss";
 import treeNode from "./node";
 import sortable from "../sortable";
@@ -261,11 +260,11 @@ export default class extends uiBase {
           const fromHost = getHost(evt.from);
           const toHost = getHost(evt.to);
           const fromNodes = fromHost.nodes;
-          const toNodes = toHost.nodes;   
+          const toNodes = toHost.nodes;
 
           /**
            * @typedef {Object} SortData
-           * @property {Node} fromNode 
+           * @property {Node} fromNode
            * @property {Array.<Node>} fromNodes
            * @property {Node} toNode
            * @property {Array.<Node>} toNodes

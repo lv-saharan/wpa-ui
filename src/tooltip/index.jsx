@@ -1,8 +1,7 @@
-const { h, classNames, createRef } = wpa
+import { h, classNames, createRef, extractClass } from "uiBase";
 import { getCSSStyleSheets } from "../css";
 import css from "./index.scss";
 import popover from "../popover";
-
 
 /**
  * @module Tooltip
@@ -17,7 +16,7 @@ import popover from "../popover";
   </wp-tooltip>
 
 */
- 
+
 /**
  * 小提示
  * @extends module:Popover

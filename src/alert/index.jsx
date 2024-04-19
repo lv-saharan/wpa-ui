@@ -1,8 +1,7 @@
 /**
  * @author lv.saharan
  */
-const { h, classNames } = wpa;
-import uiBase from "../uiBase";
+import uiBase,{ h, classNames } from "uiBase";
 import { getCSSStyleSheets } from "../css";
 const CLASS_NAME_FADE = "fade";
 const CLASS_NAME_SHOW = "show";

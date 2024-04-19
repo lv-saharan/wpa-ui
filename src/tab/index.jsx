@@ -1,5 +1,4 @@
-const { h, Component, classNames, render } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, classNames, createRef, extractClass } from "uiBase";
 import css from "./index.scss";
 
 /**
@@ -110,7 +109,7 @@ export default class extends uiBase {
   /**
    * 激活指定项
    * @param {string|number} param0 index 或 key
-   * @param {*} type 
+   * @param {*} type
    */
   async active({ index, key }, type = null) {
     if (type == null || type == this.$props.activeEvent) {

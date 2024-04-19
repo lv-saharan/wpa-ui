@@ -1,4 +1,4 @@
-const { h, render, define, Component, setTheme } = wpa;
+import { h, render, define, Component, setTheme } from "uiBase";
 
 /**
  * @module CSS

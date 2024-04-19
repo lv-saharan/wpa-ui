@@ -1,5 +1,4 @@
-const { h, classNames, extractClass } = wpa;
-import uiBase from "../uiBase";
+import uiBase,{ h, classNames, extractClass } from "uiBase";
 import css from "./index.scss";
 let root = new URL(`./echarts/`, import.meta.url).href;
 let jsFile = "echarts.esm.min.js";

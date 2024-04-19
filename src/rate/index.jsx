@@ -1,5 +1,4 @@
-const { h, define, Component, classNames, render } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, classNames, createRef, extractClass } from "uiBase";
 import css from "./index.scss";
 /**
  * 投票星样式

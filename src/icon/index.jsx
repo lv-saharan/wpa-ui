@@ -1,6 +1,4 @@
-const { h, classNames, Component } = wpa;
-
-import uiBase from "../uiBase";
+import uiBase ,{ h, classNames, extractClass, createRef } from "uiBase";
 import { MODES, TYPES } from "./constants";
 
 let MODE = MODES.SINGLE;

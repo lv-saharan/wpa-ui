@@ -1,4 +1,4 @@
-const { h, classNames, extractClass, createRef } = wpa;
+import { h, classNames, extractClass, createRef } from "uiBase";
 
 function validateElement(el) {
   const { validity } = el;

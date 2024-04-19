@@ -1,6 +1,4 @@
-const { h, classNames, extractClass } = wpa;
-// import { createPopper } from '@popperjs/core';
-import uiBase from "../uiBase";
+import uiBase, { h, classNames, extractClass } from "uiBase";
 import { getCSSStyleSheets, timingClassNames } from "../css";
 import css from "./index.scss";
 

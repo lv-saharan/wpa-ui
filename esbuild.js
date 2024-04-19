@@ -27,7 +27,25 @@ const buildOptions = {
   plugins: [
     sassPlugin({
       type: "css-text",
+      sourceMap: false,
+      style: "compressed",
     }),
+    {
+      name: "convert-imports",
+      setup(build) {
+        build.onLoad({ filter: /\.jsx$/ }, async (args) => {
+          let contents = fs.readFileSync(args.path, "utf-8");
+          contents = contents.replace(
+            /import\s+\{\s*([^\}]+)\s*\}\s+from\s+["'](wpa)["'];?/g,
+            "const {$1} =  $2;"
+          );
+          return {
+            contents,
+            loader: "jsx",
+          };
+        });
+      },
+    },
   ],
 };
 //minify sortablejs
@@ -82,12 +100,7 @@ switch (mode) {
     let ctx = await esbuild.context({
       ...buildOptions,
       write: false,
-      plugins: [
-        sassPlugin({
-          type: "css-text",
-        }),
-        watchPlugin,
-      ],
+      plugins: [...buildOptions.plugins, watchPlugin],
     });
     await ctx.watch();
     console.log("watching...");

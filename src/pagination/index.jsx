@@ -1,8 +1,7 @@
-const { h, classNames, extractClass } = wpa
+import { h, classNames, createRef, extractClass } from "uiBase";
 import Pager from "../pager";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";
-
 
 /**
  * @module Pagination

@@ -1,5 +1,5 @@
-const { h, classNames, extractClass } = wpa
-import uiBase from "../uiBase";
+
+import uiBase,{ h, classNames,createRef, extractClass } from "uiBase";
 import css from "./index.scss";
 import { getCSSStyleSheets } from "../css";
 
@@ -60,7 +60,7 @@ export default class extends uiBase {
     placeholder: "...",
     readonly: false,
     required: false,
-    language: "zh-Hans",
+    language: "zh_CN",
     directionality: null,
     plugins:
       "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons",

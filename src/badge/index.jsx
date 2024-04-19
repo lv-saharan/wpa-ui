@@ -1,20 +1,17 @@
-const { h, classNames, extractClass } = wpa;
-import uiBase from "../uiBase";
+import uiBase,{ h, classNames, extractClass } from "uiBase";
 import { getCSSStyleSheets } from "../css";
 
-
-
 /** @module Badge */
- 
+
 /**
  * @typedef {Object} Props
  * @property {string} [text] 内容  badge内容，可以用子元素（slot）代替
  * @property {boolean} [desc]  是否可关闭
  * @property {number} [position] 位置 top|bottom|left|right|top-left|top-right|bottom-left|bottom-right
- * 
+ *
  */
 
- /**
+/**
  * @extends uiBase
  * @hideconstructor
  * @example 
@@ -35,9 +32,7 @@ export default class extends uiBase {
     position: false,
     // divider: null,
   };
-  static propTypes = {
-
-  };
+  static propTypes = {};
   css() {}
   render(props) {
     let { text, desc, position } = this.$props;

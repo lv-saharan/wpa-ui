@@ -1,5 +1,4 @@
-const { h, classNames } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, classNames } from "uiBase";
 
 const loadingCache = new Map();
 /**

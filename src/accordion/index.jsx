@@ -1,5 +1,4 @@
-const { h, classNames } = wpa;
-import uiBase from "../uiBase";
+import uiBase, { h, classNames } from "uiBase";
 import { getCSSStyleSheets } from "../css";
 import effect from "../effect";
 
@@ -7,7 +6,7 @@ import effect from "../effect";
  * @readonly
  * @enum {string}
  */
-const  DIRECTIONS= {
+const DIRECTIONS = {
   /**
    * @description 水平
    */
@@ -19,7 +18,6 @@ const  DIRECTIONS= {
 };
 const CLASS_NAME_COLLAPSED = "collapsed";
 
-
 /** 
  * @module Accordion 
  * @desc 手风琴组件
@@ -27,16 +25,16 @@ const CLASS_NAME_COLLAPSED = "collapsed";
  
   <wp-accordion first-open items={[{key:"home",header:"Home",body:<h1>body</h1>}]}/>
 */
- 
+
 /**
  * @typedef {Object} Props
- * @property {boolean} [alwaysOpen] 一直打开 
+ * @property {boolean} [alwaysOpen] 一直打开
  * @property {boolean} [firstOpen] 第一个打开
  * @property {number} [transitionDuration] 折叠速度
  * @property {string } [direction] 显示方向 horizontal | vertical
  * @property {Array.<Item>} items 项
  */
-   
+
 /**
  * @typedef {Object} Item
  * @property {string} [key] 关键字（可选）
@@ -44,7 +42,7 @@ const CLASS_NAME_COLLAPSED = "collapsed";
  * @property {string|JSX} header Header
  * @property {string|JSX} body  Body
  */
- 
+
 export default class extends uiBase {
   /**
    * 默认注入的bootstrap样式：
@@ -64,14 +62,13 @@ export default class extends uiBase {
       "transitions"
     );
 
-
   static get DIRECTIONS() {
     return DIRECTIONS;
   }
   /**
    * 组件属性
    * @type {Props}
-   * 
+   *
    */
   static defaultProps = {
     alwaysOpen: false,
@@ -123,7 +120,7 @@ export default class extends uiBase {
        * @event module:Accordion#collapseShow 展开
        * @prop {Item} item 当前展开项
        * @example
-       * 
+       *
        * <wp-accordion onCollapseShow={evt=>{
        *    let item=evt.detail
        *    //do something
@@ -135,7 +132,7 @@ export default class extends uiBase {
        * @event module:Accordion#collapseHide 关闭
        * @prop {Item} item 当前关闭项
        * @example
-       * 
+       *
        * <wp-accordion onCollapseHide={evt=>{
        *    let item=evt.detail
        *    //do something
@@ -152,10 +149,10 @@ export default class extends uiBase {
    */
   toggle(item) {
     let { items, alwaysOpen } = this.$props;
-    if (typeof item ==="number") {
-      item =items.at(item);
-    }else if(typeof item=="string"){
-      item=items.find(it=>it.key==item);
+    if (typeof item === "number") {
+      item = items.at(item);
+    } else if (typeof item == "string") {
+      item = items.find((it) => it.key == item);
     }
     if (alwaysOpen) {
       this.#toggle(item);
