@@ -1,17 +1,4 @@
-// import {
-//   h,
-//   Component,
-//   classNames,
-//   define,
-//   extractClass,
-//   getHost,
-//   createRef,
-//   uniqueTag,
-//   purgeCSSSS,
-//   setTheme,
-//   render,
-// } from "wpa";
-const {
+import {
   h,
   Component,
   classNames,
@@ -23,7 +10,21 @@ const {
   purgeCSSSS,
   setTheme,
   render,
-} = wpa;
+} from "wpa";
+
+// const {
+//   h,
+//   Component,
+//   classNames,
+//   define,
+//   extractClass,
+//   getHost,
+//   createRef,
+//   uniqueTag,
+//   purgeCSSSS,
+//   setTheme,
+//   render,
+// } = wpa;
 export default class extends Component {}
 
 export {

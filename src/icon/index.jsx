@@ -1,4 +1,4 @@
-import uiBase ,{ h, classNames, extractClass, createRef } from "uiBase";
+import uiBase, { h, classNames, extractClass, createRef } from "uiBase";
 import { MODES, TYPES } from "./constants";
 
 let MODE = MODES.SINGLE;
@@ -12,7 +12,7 @@ const loadIcon = async (name, type, mode) => {
   }
   try {
     if ((mode ?? MODE) == MODES.BUNDLE) {
-      let { default: icons } = await import(`./icons/${type}.js`);
+      let { default: icons } = await import(new URL(`./${type}.js`, root).href);
       return icons[name];
     } else {
       // const { default: icon } = await import(`./icons/${type}/${name}.js`)
@@ -26,7 +26,9 @@ const loadIcon = async (name, type, mode) => {
         };
         iconsCache.set(key, cachedIcon);
         try {
-          const { default: icon } = await import(`./icons/${type}/${name}.js`);
+          const { default: icon } = await import(
+            new URL(`./${type}/${name}.js`, root).href
+          );
           cachedIcon.icon = icon;
         } catch {
           // console.info("icon load error", type, name)
@@ -64,7 +66,6 @@ const createSvg = async (name, type, mode, props = {}) => {
   );
 };
 
-
 /** 
  * @module ICON 
  * @desc 图标组件
@@ -73,7 +74,7 @@ const createSvg = async (name, type, mode, props = {}) => {
    <wp-icon name="email" size="2" color="red"/>
 
 */
- 
+
 /**
  * @typedef {Object} Props
  * @property {string} name 名称 如：home  See:{@link https://marella.me/material-design-icons/demo/svg/|material-design-icons}
@@ -81,9 +82,10 @@ const createSvg = async (name, type, mode, props = {}) => {
  * @property {string} [type]  图标类型 默认：filled，如：filled，outlined，round，sharp，two-tone，file-type
  * @property {number} [size]  大小 size倍的rem的宽高，可以通过--wp-icon-width,--wp-icon-height 指定
  * @property {string} [color]  颜色 如：red,#fff,也可以 --wp-icon-color指定
- * 
+ *
  */
 
+let root = new URL(`./icons/`, import.meta.url).href;
 
 export default class extends uiBase {
   static updateOnAttributeChanged = true;
@@ -137,7 +139,12 @@ export default class extends uiBase {
   static set Type(val) {
     TYPE = val;
   }
-
+  static get root() {
+    return root;
+  }
+  static set root(value) {
+    root = value;
+  }
   css() {
     let { size, color } = this.$props;
     let fill = color ? color : "var(--wp-icon-color)";

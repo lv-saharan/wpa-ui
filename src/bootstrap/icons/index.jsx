@@ -1,6 +1,7 @@
 import uiBase, { h, classNames, extractClass } from "uiBase";
 
 const iconsCache = new Map();
+let root = new URL(`./bootstrap/icons/`, import.meta.url).href;
 
 const loadIcon = async (name) => {
   try {
@@ -13,7 +14,9 @@ const loadIcon = async (name) => {
       };
       iconsCache.set(key, cachedIcon);
       try {
-        const { default: icon } = await import(`./bootstrap/icons/${name}.js`);
+        const { default: icon } = await import(
+          new URL(`./${name}.js`, root).href
+        );
         cachedIcon.icon = icon;
       } catch {
         // console.info("icon load error", type, name)
@@ -99,7 +102,12 @@ export default class extends uiBase {
       vertical-align:var(--wp-bicon-valign,middle) ;
     }
   `;
-
+  static get root() {
+    return root;
+  }
+  static set root(value) {
+    root = value;
+  }
   css() {
     let { size, color } = this.$props;
     let fill = color ? color : "var(--wp-bi-color)";

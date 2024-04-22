@@ -60,6 +60,8 @@ const LoadingEffects = {
  * @property {string} [color] 颜色 可以通过 --wp-loading-color 全局设定
  */
 
+let root = new URL(`./loadings/`, import.meta.url).href;
+
 export default class extends uiBase {
   static updateOnAttributeChanged = true;
   static css = `
@@ -84,6 +86,12 @@ export default class extends uiBase {
    */
   static get loadingEffects() {
     return LoadingEffects;
+  }
+  static get root() {
+    return root;
+  }
+  static set root(value) {
+    root = value;
   }
   #css;
 
@@ -129,7 +137,9 @@ export default class extends uiBase {
       loadingConfig = [];
       loadingCache.set(key, loadingConfig);
       try {
-        const { default: config } = await import(`./loadings/${name}.js`);
+        const { default: config } = await import(
+          new URL(`./${name}.js`, root).href
+        );
         loadingCache.set(key, config);
         for (let { resolve } of loadingConfig) {
           resolve(config);

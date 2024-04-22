@@ -1,4 +1,4 @@
-import uiBase,{ h, Component } from "uiBase";
+import uiBase, { h, Component } from "uiBase";
 import css from "./index.scss";
 
 /**
@@ -31,6 +31,8 @@ import css from "./index.scss";
 
  */
 
+let root = new URL(`./monaco/`, import.meta.url).href;
+
 export default class extends uiBase {
   static css = [
     () => {
@@ -38,14 +40,12 @@ export default class extends uiBase {
       const fontCSS = `@font-face {
         font-family: "codicon";
         font-display: block;
-        src: url(${
-          new URL("./monaco", importUrl).href
-        }/codicon-BEBTMDKB.ttf) format("truetype");
+        src: url(${root}/codicon-BEBTMDKB.ttf) format("truetype");
       }`;
       const fontCSSSS = new CSSStyleSheet();
       fontCSSSS.replace(fontCSS);
       document.adoptedStyleSheets = [...document.adoptedStyleSheets, fontCSSSS];
-      return fetch(new URL("./monaco/index.css", importUrl).href).then((r) =>
+      return fetch(new URL("./index.css", root).href).then((r) =>
         r.text()
       );
     },
@@ -98,7 +98,7 @@ export default class extends uiBase {
   }
   installed() {
     this.$props.value = this.$props.value ?? this.$props.codes;
-    import(new URL("./monaco/index.js", import.meta.url).href).then(
+    import(new URL("./index.js", root).href).then(
       ({ monaco }) => {
         this.#monaco = monaco;
         this.editor = monaco.editor.create(this.$(".coder"), {
