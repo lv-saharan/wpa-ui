@@ -1,6 +1,6 @@
 {
   "name": "wpa-ui",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "使用wpa开发的WebComponents库,样式采用bootstrap。可以作为标准的esmodule使用",
   "main": "src/index.jsx",
   "type": "module",
