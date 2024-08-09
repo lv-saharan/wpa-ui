@@ -133,6 +133,14 @@ export default class extends uiBase {
    * @param {*} val
    * @param {boolean} update
    */
+  unselect(val, update = true) {
+    return this.unSelect(val, update);
+  }
+  /**
+   * 取消选中指定行
+   * @param {*} val
+   * @param {boolean} update
+   */
   unSelect(val, update = true) {
     let { multiSelect, selectedKeys } = this.$props;
     if (!multiSelect) this.$props.selectedKey = null;
@@ -241,6 +249,14 @@ export default class extends uiBase {
     let index = expandedKeys.indexOf(key);
     if (index != -1) expandedKeys.splice(index, 1);
     if (update) this.update();
+  }
+  collapseAll(update = true) {
+    this.expandedKeys.forEach((key) => {
+      this.collapse(key, false);
+    });
+    if (update) {
+      this.update();
+    }
   }
   async installed() {
     if (this.$props.sortable) {

@@ -32,9 +32,9 @@ class TreeNode extends uiBase {
     ignoreAttrs: Boolean,
   };
 
-  /**
-   * 获取树组件
-   */
+  constructor() {
+    super();
+  }
   get tree() {
     return this.$props.tree;
   }
@@ -211,8 +211,14 @@ class TreeNode extends uiBase {
   /**
    * 取消选中节点
    */
+  unselect() {
+    return this.unSelect();
+  }
+  /**
+   * 取消选中节点
+   */
   unSelect() {
-    this.tree.unSelect(this.key, false);
+    this.tree.unselect(this.key, false);
     this.updateSelf();
     /**
      * @event module:Tree#nodeUnSelect 取消选中节点
@@ -360,6 +366,7 @@ class TreeNode extends uiBase {
     return this.#Sortable;
   }
   async installed() {
+    super.installed();
     if (this.sortable) {
       const Sortable = await sortable.use();
       this.#Sortable = Sortable.create(this.$(".children"), {
@@ -419,6 +426,34 @@ class TreeNode extends uiBase {
     }
   }
   async render(props) {
+    //已Node设置的值优先
+    //每次渲染时，如果Node设置的值与当前值不一致，则更新
+    if (this.node.selected === true) {
+      this.tree.select(this.key, false);
+    }
+    if (this.node.checked === true) {
+      this.tree.check(this.key, false);
+    }
+    if (this.node.radioed === true) {
+      this.tree.radio(this.key, false);
+    }
+    if (this.node.expanded === true) {
+      this.tree.expand(this.key, false);
+    }
+
+    if (this.node.selected === false) {
+      this.tree.unselect(this.key, false);
+    }
+    if (this.node.checked === false) {
+      this.tree.uncheck(this.key, false);
+    }
+    if (this.node.radioed === false) {
+      this.tree.unradio(this.key, false);
+    }
+    if (this.node.expanded === false) {
+      this.tree.collapse(this.key, false);
+    }
+
     let { node, cssss } = props;
 
     if (!this.tree.$props.multiSelect && this.selected) {
